@@ -126,7 +126,7 @@
 }
 .alert {
   color: #fff;
-  background-color: #8970ef;
+  background-color: #e0c56e;
   font-weight: 600;
   padding: 10px;
   border: none;
@@ -213,7 +213,7 @@
   font-weight: 400;
 }
 .infoCard .infoSubheadline.backgrounded {
-  background: #8970ef;
+  background: #e0c56e;
 }
 .infoCard .infoSubheadline.backgrounded h1,
 .infoCard .infoSubheadline.backgrounded h2,
@@ -221,7 +221,7 @@
   color: #fff;
 }
 .infoCard .actLink {
-  background: #8970ef;
+  background: #e0c56e;
 }
 .infoCard .actLink h1,
 .infoCard .actLink h2,
@@ -259,27 +259,27 @@
   font-size: 1.6em;
 }
 .actionBtn:hover {
-  background-color: #463494;
-  border-color: #463494;
+  background-color: #b08f26;
+  border-color: #b08f26;
 }
 .actionBtn {
   display: block;
   margin: 10px auto;
   max-width: 350px;
   width: 100%;
-  background-color: #6e54da;
+  background-color: #e8b923;
   color: #fff !important;
   text-align: center;
   font-size: 1em;
   font-weight: 600;
-  border: 2px solid #6e54da;
+  border: 2px solid #e8b923;
   border-radius: 20px;
   transition: all 0.5s;
   white-space: normal;
 }
 .inverseBtn {
   background-color: #fff;
-  color: #6e54da !important;
+  color: #e8b923 !important;
 }
 .inverseBtn:hover {
   color: #fff !important;
@@ -303,7 +303,7 @@ button:focus {
 }
 #topNavbar {
   border: none;
-  background: #463494;
+  background: #b08f26;
   margin-bottom: 0px;
 }
 #topNavbar .leftNav {
@@ -364,7 +364,7 @@ button:focus {
   }
 }
 #topCover {
-  background: #6e54da;
+  background: #e8b923;
   box-shadow: 0px -10px 20px 2px rgba(120,120,120,0.2) inset;
   min-height: initial;
 }
@@ -442,13 +442,13 @@ body {
   background-color: #fff;
 }
 a {
-  color: #6e54da;
+  color: #e8b923;
 }
 a:hover,
 a:active,
 a:focus {
   text-decoration: none !important;
-  color: #463494;
+  color: #b08f26;
 }
 ul {
   margin: 0px;

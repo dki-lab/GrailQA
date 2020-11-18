@@ -26,4 +26,4 @@ Each file contains an array of JSON objects, each corresponding to a question (n
         - relation: the Freebase id of the relation on the edge
         - friendly_name: the Freebase canonical name of the relation, only for human readability
 - sparql_query: the SPARQL query that is actually used to generate the answer. Note that the provided query will only get the Freebase id of the answer, and you need to convert it into the human readable format as described previously
-- lisp: the logical form in lisp grammar (or S-expression as described in our paper). It provides more concise syntax than sparql_query and can be easily used with modern encoder-decoder models. Note that, **if you want to have exact match value of your model on the leaderboard, please submit your results with logical form in S-expression.**
+- lisp: the logical form in lisp grammar (or S-expression as described in our paper). It provides more concise syntax than sparql_query and can be easily used with modern encoder-decoder models. Note that, **if you want to have exact match score of your model on the leaderboard, please submit your results with logical form in S-expression.**

@@ -2,14 +2,13 @@
 
 Each file contains an array of JSON objects, each corresponding to a question (not graph query). The detailed format of a question is as follows. Note that for the public test set, we mask all the fields except for the input natrual language question (i.e., question field).
 
-- qid: question id. A variable-digit number. The right-most two digits are for entity paraphrases, the middle four digits are for sentence paraphrases, and the rest comprise the id of the corresponding graph query this question is derived from. The questions with the same graph query id therefore are paraphrases.
+- qid: question id. A variable-digit number. The right-most two digits are for entity paraphrases, the middle four digits are for sentence paraphrases, and the rest comprise the id of the corresponding graph query this question is derived from. The questions with the same graph query id therefore are paraphrases. Note that, qids in test set are anonymized.
 - question: the natural language question. Lower-cased
 - answer: the answer set, an array of strings. For an entities, the answer is its canonical name in Freebase derived from the type.object.name predicate; for a literal, the answer is its literal form (without data type specification). We provide answers in human readable form instead of Freebase specific form like mid to facilitate the use of the dataset on other data sources like DBpedia or the Web.
-    - AnswerType: The type of answer, can be either "Entity" or "Value"
-    - AnswerArgument: The mid of an entity if AnswerType is "Entity", or the value itself if answer type is "Value"
-    -EntityName: The friendly name (i.e., label) of the entity if AnswerType is "Entity".
+    - answer_type: The type of answer, can be either "Entity" or "Value"
+    - answer_argument: The mid of an entity if AnswerType is "Entity", or the value itself if answer type is "Value"
+    -entity_name: The friendly name (i.e., label) of the entity if AnswerType is "Entity".
 - function: the function of a question, ["count", "max", "min", "argmax", "argmin", ">", ">=", "<", "<=", "none"]. A question will have at most one function
-- commonness: the log probability of the corresponding graph query
 - num_node: number of nodes of the corresponding graph query
 - num_edge: number of edges of the corresponding graph query
 - graph_query: the corresponding graph query
@@ -26,4 +25,4 @@ Each file contains an array of JSON objects, each corresponding to a question (n
         - relation: the Freebase id of the relation on the edge
         - friendly_name: the Freebase canonical name of the relation, only for human readability
 - sparql_query: the SPARQL query that is actually used to generate the answer. Note that the provided query will only get the Freebase id of the answer, and you need to convert it into the human readable format as described previously
-- lisp: the logical form in lisp grammar (or S-expression as described in our paper). It provides more concise syntax than sparql_query and can be easily used with modern encoder-decoder models. Note that, **if you want to have exact match score of your model on the leaderboard, please submit your results with logical form in S-expression.**
+- s_expression: the logical form in S-expression as described in our paper. It provides more concise syntax than sparql_query and can be easily used with modern encoder-decoder models. Note that, **if you want to have exact match score of your model on the leaderboard, please submit your results with logical form in S-expression.**

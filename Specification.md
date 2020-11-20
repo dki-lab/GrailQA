@@ -2,9 +2,9 @@
 
 Each file contains an array of JSON objects, each corresponding to a question (not graph query). The detailed format of a question is as follows. Note that for the public test set, we mask all the fields except for the input natrual language question (i.e., question field).
 
-- qid: question id. A variable-digit number. The right-most two digits are for entity paraphrases, the middle four digits are for sentence paraphrases, and the rest comprise the id of the corresponding graph query this question is derived from. The questions with the same graph query id therefore are paraphrases. Note that, qids in test set are anonymized.
+- qid: question id. The first 8 digits are for cannonical logical forms (i.e., templates), the remaining digits are for paraphrases and different groudings.. The questions with the same graph query id therefore are paraphrases. Note that, qids in test set are anonymized.
 - question: the natural language question. Lower-cased
-- answer: the answer set, an array of strings. For an entities, the answer is its canonical name in Freebase derived from the type.object.name predicate; for a literal, the answer is its literal form (without data type specification). We provide answers in human readable form instead of Freebase specific form like mid to facilitate the use of the dataset on other data sources like DBpedia or the Web.
+- answer: the answer set, an array of json objects. We provide answers in both human readable form and Freebase specific form like mid.
     - answer_type: The type of answer, can be either "Entity" or "Value"
     - answer_argument: The mid of an entity if AnswerType is "Entity", or the value itself if answer type is "Value"
     -entity_name: The friendly name (i.e., label) of the entity if AnswerType is "Entity".

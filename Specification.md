@@ -1,8 +1,8 @@
 ### Data Format
 
-Each file contains an array of JSON objects, each corresponding to a question (not graph query). The detailed format of a question is as follows. Note that for the public test set, we mask all the fields except for the input natrual language question (i.e., question field).
+Each file contains an array of JSON objects, each corresponding to a question (not graph query). The detailed format of a question is as follows. Note that for the public test set, we mask all the fields except for the input natural language question (i.e., question field).
 
-- qid: question id. The first eight digits are for cannonical logical forms (i.e., templates), the remaining digits are for paraphrases and different groudings.. The questions with the same graph query id therefore are paraphrases. Note that, qids in test set are anonymized.
+- qid: question id. The first eight digits are for canonical logical forms (i.e., templates), the remaining digits are for paraphrases and different groundings.. The questions with the same graph query id therefore are paraphrases. Note that, qids in test set are anonymized.
 - question: the natural language question. Lower-cased
 - answer: the answer set, an array of json objects. We provide answers in both human readable form and Freebase specific form like mid.
     - answer_type: The type of answer, can be either "Entity" or "Value"

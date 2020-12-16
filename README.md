@@ -14,4 +14,4 @@ The updated website content will be generated under `GrailQA/`. Push it to branc
 
 
 # Instructions on Updating Leaderboard
-This website reads in the leaderboard statistics from *output.json*, so to update the leadboard, you only need to update *output.json* and re-publish it following the above instructions. To update *output.json* that contains the latest information from codalab server, following the instructions under `grailqa/`. Currently, only [Yu Gu](gu.826@osu.edu) is able to do this.
+This website reads in the leaderboard statistics from *output.json*, so to update the leadboard, you only need to update *output.json* and re-publish it following the above instructions. To update *output.json* that contains the latest information from codalab server, following the instructions under `grailqa/`. Currently, only [Yu Gu](mailto:gu.826@osu.edu) is able to do this.

@@ -1,0 +1,36 @@
+@require 'layout/theme'
+@require 'app/passage'
+@require 'app/qa'
+
+#title
+  word-break break-all
+
+.model-title-holder
+  display none
+
+.para-wrap
+  padding 20px 0px
+
+.listContainer
+  border-top 10px solid #eee
+  .infoBody
+    padding 10px 20px
+    
+.qas-wrap
+  max-height 500px
+  overflow scroll
+  .correct-qa
+    border-left 5px solid #29e21f
+  .wrong-qa
+    border-left 5px solid #e2461f
+  .partial-qa
+    border-left 5px solid #e2c62f
+  .prediction-holder
+    display none
+  .answer, .prediction
+    margin-right 4px
+    border 1px solid #ddd
+    padding-left 2px
+    padding-right 2px
+  .no-answer
+    font-family monospace

@@ -1,0 +1,22 @@
+{
+  "name": "grailqa-explorer",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Yu Gu"
+  ],
+  "license": "ISC",
+  "homepage": "https://dki-lab.github.io/GrailQA",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "lato-webfont": "^1.1.2"
+  }
+}

@@ -1,0 +1,164 @@
+extends layout
+
+block title
+  title Strongly Generalizable Question Answering Dataset
+
+block description
+  meta(name='description', content='Strongly Generalizable Question Answering Dataset (GrailQA) is a new large-scale, high-quality dataset for question answering on knowledge bases (KBQA) on Freebase with 64,331 questions annotated with both answers and corresponding logical forms in different syntax (i.e., SPARQL, S-expression, etc.). It can be used to test three levels of generalization in KBQA: i.i.d., compositional, and zero-shot.')
+
+block extralinks
+  link(rel='stylesheet', href='/stylesheets/index.css')
+  script(async defer src="https://buttons.github.io/buttons.js")
+
+block extrascripts
+
+mixin grailqa_model_display(group, is_test)
+  table.table.performanceTable
+    tr
+      if is_test
+        th Rank
+      th Model
+      th EM
+      th F1
+
+    - var largest_em = Math.max.apply(null, group.map(function (model) { return model.em; }))
+    - var largest_f1 = Math.max.apply(null, group.map(function (model) { return model.f1; }))
+
+    each model in group
+      tr
+        if is_test
+          td 
+            p #{model.rank}
+            span.date.label.label-default #{moment.unix(model.date).format('MMM DD, YYYY')}
+        td(style="word-break:break-word;")
+          | #{model.model_name}
+          p.institution #{model.institution}
+          if model.link
+            a.link(href=model.link) #{model.link}
+        td
+          if model.em == largest_em
+            b #{model.em.toFixed(3)}
+          else
+            | #{model.em.toFixed(3)}
+        td
+          if model.f1 == largest_f1
+            b #{model.f1.toFixed(3)}
+          else
+            | #{model.f1.toFixed(3)}
+
+block content
+  .cover#contentCover
+    .container
+      .row
+        .col-md-5
+          .infoCard
+            .infoBody
+              .infoHeadline
+                h2 What is GrailQA?
+              p 
+                span
+                  | Strongly 
+                  b G
+                  |ene
+                  b ra
+                  |l
+                  b i
+                  |zab
+                  b l
+                  |e 
+                  b Q
+                  |uestion 
+                  b A
+                  |nswering 
+                  Dataset (GrailQA) 
+                | is a new large-scale, high-quality dataset for question answering on knowledge bases (KBQA) on Freebase with 64,331 questions annotated with both answers and corresponding logical forms in different syntax (i.e., SPARQL, S-expression, etc.). It can be used to test three levels of generalization in KBQA: i.i.d., compositional, and zero-shot.
+
+              a.btn.actionBtn(href="/explore/grailqa/") Explore GrailQA
+              a.btn.actionBtn(href="https://arxiv.org/abs/2011.07743") GrailQA paper (Gu et al. '20)
+              hr
+              .infoHeadline
+                h2 Why GrailQA?
+              p 
+                | GrailQA is by far the largest crowdsourced KBQA dataset with questions of high diversity (i.e., questions in GrailQA can have up to 4 relations and optionally have a function from counting, superlatives and comparatives). It also has the highest coverage over Freebase; it widely covers 3,720 relations and 86 domains from Freebase. Last but not least, our meticulous data split allows GrailQA to test not only i.i.d. generalization, but also compositional generalization and zero-shot generalization, which are critical for practical KBQA systems.
+              .infoHeadline
+                h2 News
+              ul.list-unstyled(style = "background-color:#f5f5f5")
+                li
+                  span.date.label.label-default(style = "background-color:#d8ab1f")
+                    i 11/30/2020
+                  |  We fix some minor error in the sparql_queries provided in our dataset.
+
+              .infoHeadline
+                h2 Getting Started
+              p
+                | We've built a few resources to help you get started with the dataset.
+              p 
+                | Download a copy of the dataset (distributed under the  
+                a(href="http://creativecommons.org/licenses/by-sa/4.0/legalcode") CC BY-SA 4.0
+                |  license):
+                ul.list-unstyled
+                  li
+                    a.btn.actionBtn.inverseBtn(href="https://dl.orangedox.com/WyaCpL/", download)
+                      | GrailQA Dataset (120 MB)
+              hr
+              p 
+                | To work with our dataset, we recommend you setting up a Virtuoso server for Freebase (feel free to choose your own way to index Freebase). Please find both a clean version of Freebase dump and instructions on setting up the server via:
+                ul.list-unstyled
+                  li
+                    a.btn.actionBtn.inverseBtn(href="https://github.com/dki-lab/Freebase-Setup", download)
+                      | Freebase Setup
+              hr
+              p To evaluate your models, we have also made available the evaluation script we will use for official evaluation, along with a sample prediction file that the script will take as input. Evaluating semantic-level exact match also depends on several preprocessed ontology files of Freebase. You can find all of them 
+                a(href="https://worksheets.codalab.org/worksheets/0xf5592764ac8a475abc1eb747e246066c") here. 
+                | To run the evaluation, use 
+                code
+                  | python evaluate.py &lt;path_to_dev&gt; &lt;path_to_predictions&gt; --fb_roles &lt;path_to_fb_roles&gt;  --fb_types &lt;path_to_fb_types&gt; --reverse_properties &lt;path_to_reverse_properties&gt;
+                |.
+                ul.list-unstyled
+                  li
+                    a.btn.actionBtn.inverseBtn(href="https://worksheets.codalab.org/bundles/0x2d13989c17e44690ab62cc4edc0b900d/", download)
+                      | Evaluation Script
+                  li
+                    a.btn.actionBtn.inverseBtn(href="https://worksheets.codalab.org/bundles/0x23cbaa41769a43bd987cd23b7baaceb5/", download)
+                      | Sample Prediction File (on Dev Set)
+              p Once you have a built a model that works to your expectations on the dev set, you submit it to get official scores on the dev and a hidden test set. To preserve the integrity of test results, we do not release the labels of test set to the public. Here's a tutorial walking you through official evaluation of your model:
+              a.btn.actionBtn.inverseBtn(href="https://worksheets.codalab.org/worksheets/0xd51b9aa5cf374ee598f1d6422cd976f3")
+                | Submission Tutorial
+
+              .infoHeadline
+                h2 Have Questions?
+              p 
+                | Send an email to 
+                a(href="mailto:gu.826@osu.edu") gu.826@osu.edu
+                | , or create an issue in 
+                a(href="https://github.com/dki-lab/GrailQA") github.
+              .infoHeadline
+                h2 Acknowledgement
+              p
+                | We thank 
+                a(href="https://rajpurkar.github.io/") Pranav Rajpurkar
+                |  and 
+                a(href="https://robinjia.github.io/") Robin Jia 
+                | for giving us the permission to build this website based on 
+                a(href="https://rajpurkar.github.io/SQuAD-explorer/") SQuAD.  
+            .infoSubheadline
+              include includes/tweet
+        .col-md-7
+          .infoCard
+            .infoBody
+              .infoHeadline
+                h2 Leaderboard: Overall
+              p Here are the overall Exact Match (EM) and F1 scores evaluated on GrailQA test set. To get the EM score on GrailQA, please submit your results with logical forms in S-expression. Note that, submissions are ranked only based on F1, so feel free to choose your own meaning representation as EM won't affect your ranking.
+              +grailqa_model_display(test, true)
+          .infoCard
+            .infoBody
+              .infoHeadline
+                h2 Leaderboard: Compositional Generalization
+              p Here are the Exact Match (EM) and F1 scores evaluated on the subset of GrailQA test set that tests compositional generalization.
+              +grailqa_model_display(test2, true)
+          .infoCard
+            .infoBody
+              .infoHeadline
+                h2 Leaderboard: Zero-shot Generalization
+              p Here are the Exact Match (EM) and F1 scores evaluated on the subset of GrailQA test set that tests zero-shot generalization.
+              +grailqa_model_display(test3, true)

@@ -1,0 +1,55 @@
+extends layout
+
+block title
+  title GrailQA - the Strongly Generalizable Question Answering Dataset
+
+block description
+  meta(name='description', content='GrailQA is the Strongly Generalizable Answering Dataset')
+
+block extralinks
+  link(rel='stylesheet', href='/stylesheets/article.css')
+
+block extrascripts
+  script(src='/javascripts/hilitorModified.js')
+  script(src='/javascripts/removeStopWords.js')
+  script(src='/javascripts/highlighting.js')
+  script(src='/javascripts/evaluate.js')
+  script(src='/javascripts/model.js')
+
+block content
+  .cover
+    .container
+      .row
+        .col-md-12
+          .infoCard
+            .infoSubheadline.model-title-holder
+              h1 Predictions
+              h2 Scores
+            .infoBody
+              h1#title #{decodeURIComponent(title)}
+              h2#subtitle The Stanford Question Answering Dataset
+              div         
+                each paragraph in paragraphs
+                  .para-wrap
+                    .row
+                      .col-md-6
+                        pre #{paragraph.context}
+                      .col-md-6
+                        .qas-wrap
+                          each qa in paragraph.qas
+                            .qa-wrap(data-id=qa.id)
+                              p 
+                                strong.question #{qa.question}
+                              ul.list-unstyled
+                                li
+                                  p
+                                    i Ground Truth Answers: 
+                                    if qa.answers.length > 0
+                                      each answer, index in qa.answers
+                                        span.answer #{answer.text}
+                                    else
+                                      span.no-answer &lt;No Answer&gt;
+                                li.prediction-holder
+                                  p
+                                    i Prediction: 
+                                    span.prediction

@@ -1,0 +1,30 @@
+max_submissions_per_period: 5                               # allows at most 5 submissions per user per period, where period is 24 hours by default
+log_worksheet_uuid: '0x805c96e4ca5d42aca551a6f59a91a519'    # uuid of the worksheet to create new run bundles in
+submission_tag: grailqa-submit                     # configure the tag that participants use to submit to the competition
+
+# Configure how to mimic the submitted prediction bundles
+predict:
+  mimic:
+  - {new: '0x2f0bdc8049964a1eb6edf14753d0b74d', old: '0x989f054edd794ef299028c6a8b346b1a'}  # replace `old` bundle with `new` bundle
+  tag: dauqs-test-predict
+
+## Configure how to evaluate the new prediction bundles
+evaluate:
+  dependencies:
+  - {child_path: evaluate.py, parent_uuid: '0x2d13989c17e44690ab62cc4edc0b900d'}
+  - {child_path: test.json, parent_uuid: '0x2f0bdc8049964a1eb6edf14753d0b74d'}
+  - {child_path: predict.json, parent_uuid: '{predict}'}
+  - {child_path: fb_roles, parent_uuid: '0x0ad46f557075407984c440c9ded502d3'}
+  - {child_path: fb_types, parent_uuid: '0x0277abdf23c049ba82507fd8bd45ad7b'}
+  - {child_path: reverse_properties, parent_uuid: '0x4075d04609c1453a9939ae985d6fa5aa'} 
+  command: python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties
+  tag: dauqs-test-eval
+
+# Define how to extract the scores from the evaluation bundle
+score_specs:
+- {key: '/stdout:em', name: em}
+- {key: '/stdout:f1', name: f1}
+- {key: '/stdout:em_comp', name: em_comp}
+- {key: '/stdout:f1_comp', name: f1_comp}
+- {key: '/stdout:em_zero', name: em_zero}
+- {key: '/stdout:f1_zero', name: f1_zero}

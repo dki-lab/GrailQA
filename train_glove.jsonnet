@@ -5,7 +5,6 @@ local cuda = 4;
 {
   "dataset_reader": {
     "type": "cons_seq2seq",
-    "device": cuda,
     "constrained_vocab": "mix2",
     "offline": offline,
     "training": true,
@@ -26,7 +25,6 @@ local cuda = 4;
   },
   "validation_dataset_reader": {
     "type": "cons_seq2seq",
-    "device": cuda,
     "constrained_vocab": "2_step",
     "offline": offline,
     "training": false,

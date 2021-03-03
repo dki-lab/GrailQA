@@ -7,7 +7,6 @@ local use_sparql = false;
 {
   "dataset_reader":{
     "type":"bert_seq2seq",
-    "device": cuda,
     "gq1": gq1,
     "offline": offline,
     "constrained_vocab":"mix2",
@@ -31,7 +30,6 @@ local use_sparql = false;
   },
   "validation_dataset_reader":{
     "type":"bert_seq2seq",
-    "device": cuda,
     "gq1": gq1,
     "offline": offline,
     "constrained_vocab":"2_step",

@@ -20,7 +20,7 @@ from allennlp.data.token_indexers import TokenIndexer, SingleIdTokenIndexer
 
 from entity_linking.value_extractor import GrailQA_Value_Extractor
 from utils.search_over_graphs import generate_all_logical_forms_alpha, generate_all_logical_forms_2, \
-    generate_all_logcial_forms_2_with_domain, get_vocab_info_online, generate_all_logical_forms_for_literal
+    get_vocab_info_online, generate_all_logical_forms_for_literal
 from utils import search_over_graphs
 
 logger = logging.getLogger(__name__)

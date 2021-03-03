@@ -16,8 +16,6 @@ from allennlp.data.instance import Instance
 from allennlp.data.tokenizers import Token, Tokenizer
 from allennlp.data.token_indexers import TokenIndexer, SingleIdTokenIndexer
 
-from entity_linking import surface_index_memory
-from entity_linking.bert_entity_linker import BertEntityLinker
 from entity_linking.value_extractor import GrailQA_Value_Extractor
 from utils.search_over_graphs import generate_all_logical_forms_alpha, generate_all_logical_forms_2, \
     generate_all_logcial_forms_2_with_domain, get_vocab_info_online, generate_all_logical_forms_for_literal
@@ -79,7 +77,6 @@ class Constrained_Seq2SeqDatasetReader(DatasetReader):
             constrained_vocab=None,
             ranking_mode: bool = False,  # need to be consistent with the model
             use_constrained_vocab: bool = False,  # need to be consistent with the model
-            device: str = "cuda:0"   # device for entity linker, not semantic parser
     ) -> None:
         super().__init__(lazy)
         self._source_tokenizer = source_tokenizer or SpacyWordSplitter()
@@ -97,10 +94,7 @@ class Constrained_Seq2SeqDatasetReader(DatasetReader):
         self._offline = offline
         self._perfect_el = perfect_entity_linking
         if not self._perfect_el:
-            surface_index = surface_index_memory.EntitySurfaceIndexMemory(
-                "entity_linking/data/entity_list_file_freebase_complete_all_mention", "entity_linking/data/surface_map_file_freebase_complete_all_mention",
-                "freebase_complete_all_mention")
-            self.linker = BertEntityLinker(surface_index, device=device)
+            self.el_results = json.load("entity_linking/grailqa_el.json")
             self.extractor = GrailQA_Value_Extractor()
         self._constrained_vocab = constrained_vocab or '1_step'
         # possible choices: {1_step, 2_step, cheating, domain， mix}
@@ -172,7 +166,7 @@ class Constrained_Seq2SeqDatasetReader(DatasetReader):
                         if node['node_type'] == 'literal' and node['function'] not in ['argmin', 'argmax']:
                             literals.add(node['id'])
                 else:
-                    entity_map = self.linker.get_entities(item['question'])
+                    entity_map = self.el_results[item['qid']]
                     entities = set(entity_map.keys())
                     for k in entity_map:
                         v = entity_map[k]

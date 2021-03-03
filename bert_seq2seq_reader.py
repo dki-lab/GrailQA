@@ -18,8 +18,6 @@ from allennlp.data.instance import Instance
 from allennlp.data.tokenizers import Token, Tokenizer
 from allennlp.data.token_indexers import TokenIndexer, SingleIdTokenIndexer
 
-from entity_linking import surface_index_memory
-from entity_linking.bert_entity_linker import BertEntityLinker
 from entity_linking.value_extractor import GrailQA_Value_Extractor
 from utils.search_over_graphs import generate_all_logical_forms_alpha, generate_all_logical_forms_2, \
     generate_all_logcial_forms_2_with_domain, get_vocab_info_online, generate_all_logical_forms_for_literal
@@ -54,7 +52,6 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             num_constants_per_group=45,
             delimiter=";",
             gq1=False,
-            device="cuda:0",  # device for BERT-NEW, which is a separate module from the main parser
             use_sparql=False  # whether to use sparql as target logical form. Using S-expression by default
     ) -> None:
         super().__init__(lazy)
@@ -101,10 +98,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
 
         self._perfect_el = perfect_entity_linking
         if not self._perfect_el:
-            surface_index = surface_index_memory.EntitySurfaceIndexMemory(
-                "entity_linking/data/entity_list_file_freebase_complete_all_mention", "entity_linking/data/surface_map_file_freebase_complete_all_mention",
-                "freebase_complete_all_mention")
-            self.linker = BertEntityLinker(surface_index, device=device)
+            el_fn = "graphq_el.json" if self._gq1 else "grailqa_el.json"
+            self.el_results = json.load("entity_linking/" + el_fn)
             self.extractor = GrailQA_Value_Extractor()
         self._num_constants_per_group = num_constants_per_group
         self._delimiter = delimiter
@@ -170,7 +165,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                         if node['node_type'] == 'literal' and node['function'] not in ['argmin', 'argmax']:
                             literals.add(node['id'])
                 else:
-                    entity_map = self.linker.get_entities(item['question'])
+                    # entity_map = self.linker.get_entities(item['question'])
+                    entity_map = self.el_results[item['qid']]
                     entities = set(entity_map.keys())
                     for k in entity_map:
                         v = entity_map[k]

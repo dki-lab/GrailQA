@@ -94,7 +94,7 @@ class Constrained_Seq2SeqDatasetReader(DatasetReader):
         self._offline = offline
         self._perfect_el = perfect_entity_linking
         if not self._perfect_el:
-            self.el_results = json.load("entity_linking/grailqa_el.json")
+            self.el_results = json.load(open("entity_linking/grailqa_el.json"))
             self.extractor = GrailQA_Value_Extractor()
         self._constrained_vocab = constrained_vocab or '1_step'
         # possible choices: {1_step, 2_step, cheating, domain， mix}

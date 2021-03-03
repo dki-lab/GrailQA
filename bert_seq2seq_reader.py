@@ -99,7 +99,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         self._perfect_el = perfect_entity_linking
         if not self._perfect_el:
             el_fn = "graphq_el.json" if self._gq1 else "grailqa_el.json"
-            self.el_results = json.load("entity_linking/" + el_fn)
+            self.el_results = json.load(open("entity_linking/" + el_fn))
             self.extractor = GrailQA_Value_Extractor()
         self._num_constants_per_group = num_constants_per_group
         self._delimiter = delimiter

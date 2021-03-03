@@ -48,8 +48,8 @@ local offline = true;
     "target_token_indexers":{"tokens": {"namespace": "target_tokens"}},
     "num_constants_per_group": num_constants_per_group
   },
-  "train_data_path": "data/gq_train_1012.json",
-  "validation_data_path": "data/gq_dev_1012.json",
+  "train_data_path": "data/grailqa_v1.0_train.json",
+  "validation_data_path": "data/grailqa_v1.0_dev.json",
   "model": {
     "eval": true,
     "experiment_sha": "1104_gq2_bert",

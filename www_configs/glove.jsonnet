@@ -49,8 +49,8 @@ local offline = true;
      "directory_path": "vocabulary/s2s/graphq"
   },
 //  "train_data_path": "data/cwq_0907.train.json",
-    "train_data_path": "data/gq_train_1012.json",
-  "validation_data_path": "data/gq_dev_1012.json",
+    "train_data_path": "data/grailqa_v1.0_train.json",
+  "validation_data_path": "data/grailqa_v1.0_dev.json",
 //  "test_data_path": "data/lf_1_entity_1_edge.json",
 //  "datasets_for_vocab_creation": ["train"],
   "model": {

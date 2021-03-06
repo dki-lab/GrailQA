@@ -23,7 +23,7 @@ local offline = true;
   },
   "validation_dataset_reader": {
     "type": "cons_seq2seq",
-    "lazy": false,
+    "lazy": true,
     "perfect_entity_linking": false,
     "constrained_vocab": "2_step",
     "offline": offline,
@@ -42,7 +42,7 @@ local offline = true;
       }
     },
     "ranking_mode": ranking,
-    "use_constrained_vocab": false
+    "use_constrained_vocab": true
   },
   "vocabulary": {
 //    "directory_path": "vocabulary/s2s/cwq"
@@ -55,7 +55,7 @@ local offline = true;
 //  "datasets_for_vocab_creation": ["train"],
   "model": {
     "eval": true,
-    "experiment_sha": "1104_gq2_glove",
+    "experiment_sha": "",
     "type": "cons_simple_seq2seq",
     "source_embedder": {
       "allow_unmatched_keys": true,

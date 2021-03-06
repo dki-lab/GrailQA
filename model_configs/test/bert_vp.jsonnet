@@ -52,7 +52,7 @@ local offline = true;
   "validation_data_path": "data/grailqa_v1.0_dev.json",
   "model": {
     "eval": true,
-    "experiment_sha": "1104_gq2_bert_vp",
+    "experiment_sha": "",
     "type": "bert_cons_simple_seq2seq",
     "source_embedder": {
       "allow_unmatched_keys": true,

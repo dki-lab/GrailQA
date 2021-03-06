@@ -55,7 +55,7 @@ local offline = true;
 //  "datasets_for_vocab_creation": ["train"],
   "model": {
     "eval": true,
-    "experiment_sha": "1104_gq2_glove_ranking_el",
+    "experiment_sha": "",
     "type": "cons_simple_seq2seq",
     "source_embedder": {
       "allow_unmatched_keys": true,

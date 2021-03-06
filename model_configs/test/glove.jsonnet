@@ -45,14 +45,10 @@ local offline = true;
     "use_constrained_vocab": false
   },
   "vocabulary": {
-//    "directory_path": "vocabulary/s2s/cwq"
-     "directory_path": "vocabulary/s2s/graphq"
+     "directory_path": "vocabulary/grailqa"
   },
-//  "train_data_path": "data/cwq_0907.train.json",
     "train_data_path": "data/grailqa_v1.0_train.json",
   "validation_data_path": "data/grailqa_v1.0_dev.json",
-//  "test_data_path": "data/lf_1_entity_1_edge.json",
-//  "datasets_for_vocab_creation": ["train"],
   "model": {
     "eval": true,
     "experiment_sha": "",
@@ -81,10 +77,7 @@ local offline = true;
     "encoder": {
       "type": "lstm",
       "input_size": 300,
-      //1024
       "hidden_size": 768,
-      //512
-      //sometimes it might be a bad idea to set hidden_size to be much smaller than input_size
       "num_layers": 1
     },
     "target_embedding_dim": 300,

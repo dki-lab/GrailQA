@@ -1,0 +1,2 @@
+{"qid": "test-0", "logical_form": "(AND astronomy.telescope (JOIN astronomy.telescope.housed_in m.0kyyk))", "answer": ["m.09tzp04"]}
+{"qid": "test-1", "logical_form": "(AND type.int (JOIN (R music.release_track.track_number) (JOIN (R music.recording.tracks) m.0ts_5ww)))", "answer": []}

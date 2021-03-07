@@ -109,6 +109,14 @@ To train the GloVe-based model, run:
 $ PYTHONHASHSEED=23 python run.py train model_configs/train/train_glove.jsonnet --include-package constrained_seq2seq --include-package constrained_seq2seq_reader -s [your_path_specified_for_training]
 ```
 
+### Online Running Time
+We also show the running time of different models in online mode, in which offline caches are disabled. The aim of this setting is to mimic the real scenario in production.
+|                        | Transduction | Transduction-BERT | Transduction-VP | Transduction-BERT-VP | Ranking | Ranking-BERT |
+|------------------------|--------------|-------------------|-----------------|----------------------|---------|--------------|
+| Running time (seconds) | 60.899       | 50.176            | 4.787           | 1.932                | 115.459 | 80.892       |
+
+We can see that the running time is quite long when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods.
+
 ## Citation
 ```
 @article{gu2021beyond,

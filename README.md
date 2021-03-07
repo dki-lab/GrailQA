@@ -102,9 +102,11 @@ perfect_entity_linking: Whether to assume gold entities are given.
 ### Training Command
 To train the BERT-based model, run:
 ```
+PYTHONHASHSEED=23 python run.py train model_configs/train/train_bert.jsonnet --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface -s [your_path_specified_for_training]
 ```
 To train the GloVe-based model, run:
 ```
+PYTHONHASHSEED=23 python run.py train model_configs/train/train_glove.jsonnet --include-package constrained_seq2seq --include-package constrained_seq2seq_reader -s [your_path_specified_for_training]
 ```
 
 ## Citation

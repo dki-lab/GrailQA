@@ -89,8 +89,15 @@ We also provide instructions on reproduce our entity linking results to benefit 
 You can also use our code to train new models.
 ### Training Configuration
 Following [AllenNLP](https://github.com/allenai/allennlp), our `train` command also takes a configuration file as input to specify all model hyperparameters and training related parameters such as learning rate, batch size, cuda device, etc. Most parameters in the training configuration files (i.e., files under `model_configs/train/`) are quite intutive based on their names, so we will only explain those parameters that might be confusing here.
-```diff
-dsfds
+```
+ranking: Ranking model or generation mode. True for Ranking, and false for Transduction.
+offline: Whether to use cached files under cache/.
+num_constants_per_group: Number of schema items in each chunk for BERT encoding.
+gq1: True for GraphQuestions, and false for GrailQA.
+use_sparql: Whether to use SPARQL as the target query. Set to be false, because in this paper we are using S-expressions.
+use_constrained_vocab: Whether to do vocabulary pruning or not.
+constrained_vocab: If we do vocabulary pruning, how to do it? Options include 1_step, 2_step and mix2.
+perfect_entity_linking: Whether to assume gold entities are given.
 ```
 ### Training Command
 To train the BERT-based model, run:

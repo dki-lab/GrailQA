@@ -2,6 +2,15 @@
 
 Strongly **G**ene**ra**l**i**zab**l**e Question Answering Dataset (GrailQA) is a new large-scale, high-quality KBQA dataset with 64,331 questions annotated with both answers and corresponding logical forms in different syntax (i.e., SPARQL, S-expression, etc.). It can be used to test three levels of generalization in KBQA: i.i.d., compositional, and zero-shot.
 
-All datasets and resources can be found on the homepage of GrailQA: https://dki-lab.github.io/GrailQA/
+For dataset and leaderboard, please refer to the homepage of GrailQA: https://dki-lab.github.io/GrailQA/. In this repo, we help you to reproduce the results of our baseline models and to train new models using our code.
 
-Note that, current results of our own models on the leaderboard are not accurate as we just made several updates on our dataset. We will update all the numbers on the leaderboard (also the numbers on our paper) as soon as possible.
+## Overview
+To study the three levels of generalization in KBQA, we implement a line of baseline models of different natures, namely, **Transduction+BERT**, **Transduction+GloVe**, **Ranking+BERT**, and **Ranking+GloVe**.
+
+## Reproduce Our Results
+
+## Train New Models
+### Training Configuration
+### Training Command
+
+## Citation

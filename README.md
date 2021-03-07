@@ -48,8 +48,13 @@ To run Transduction+GloVe:
 PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.gz data/grailqa_v1.0_test_public.json --include-package constrained_seq2seq --include-package constrained_seq2seq_reader --predictor seq2seq --use-dataset-reader -c model_configs/test/glove_vp.jsonnet --output-file glove_vp.txt --cuda-device 0
 ```
 
+### Entity Linking
+We also provide instructions on reproduce our entity linking results to benefit future research. Similar to most existing KBQA methods, entity linking is a separate module from our main model. If you just want to run our main models, you do not need to re-run our entity linking module because our models directly retrieve the produce entity linking results under `entity_linking/`.
+(To be continued...)
+
 
 ## Train New Models
+You can also use our code to train new models.
 ### Training Configuration
 ### Training Command
 

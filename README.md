@@ -21,8 +21,15 @@ $ pip install -r requirements.txt
 **(Note: you do not need to install AllenNLP by yourself, because we have included our local version of AllenNLP in this repo.)**
 
 ## Reproduce Our Results
-### Reproduce Main Results
-### Reproduce Entity Linking Results
+The predictions of our baseline models can be found via https://worksheets.codalab.org/worksheets/0x53f31035f34e4b6194ebe16179944297.
+Run `predict` command to reproduce the predictions. There are several commands to configure to run `predict`:
+```
+[path_to_saved_model]
+[path_to_test_data]
+-c [path_to_the_config_file]
+--output-file [results_file_name] 
+--cuda-device [cuda_device_to_use]
+```
 
 
 ## Train New Models

@@ -1,6 +1,6 @@
 # GrailQA: Strongly <ins>G</ins>ene<ins>ra</ins>l<ins>i</ins>zab<ins>l</ins>e Question Answering
 [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg?style=flat-square)]()
-[![License](https://img.shields.io/badge/License-GPL-lightgrey.svg?style=flat-square)]()
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![language-python3](https://img.shields.io/badge/Language-Python3-blue.svg?style=flat-square)](https://www.python.org/)
 [![made-with-Pytorch](https://img.shields.io/badge/Made%20with-Pytorch-orange.svg?style=flat-square)](https://pytorch.org/)
 <img width="1175" alt="image" src="https://user-images.githubusercontent.com/15921425/110228546-f2193380-7ecf-11eb-8cbd-c5097a064ee4.png">
@@ -11,6 +11,30 @@
 
 ## Overview
 To study the three levels of generalization in KBQA, we implement a line of baseline models of different natures, namely, **Transduction+BERT**, **Transduction+GloVe**, **Ranking+BERT**, and **Ranking+GloVe**. Our implementation is based on [AllenNLP](https://github.com/allenai/allennlp). 
+### Package Description
+```
+GrailQA/
+├─ model_configs/
+    ├─ train
+      ├─ 
+      ├─ 
+    ├─ test
+      ├─
+      ├─
+      ├─ 
+      ├─ 
+      ├─ 
+      ├─ 
+├─ data/: 
+├─ cache/: data preprocessing scripts
+├─ saved_models/: pre-trained models and results 
+├─ utils/: running scripts
+├─ 
+├─
+├─
+├─
+├─
+```
 
 ## Setup
 There are several steps you need to do before running our code.

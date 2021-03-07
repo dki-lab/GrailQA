@@ -40,7 +40,7 @@ GrailQA/
 ├─ constrained_seq2seq_reader.py: Data reader for GloVe-based models
 ├─ run.py: Main function
 ```
-
+(The above lengthy descriptions might seem intimidating. You can view it as a reference to help you understand our code when you try to implement your own model using our implementations later, but for now it is totally fine to skip them if you only want to run our models. :blush:)
 ## Setup
 There are several steps you need to do before running our code.
 1. Follow [Freebase Setup](https://github.com/dki-lab/Freebase-Setup) to run your own Virtuoso service. After starting your virtuoso service, replace the url in `utils/sparql_executer.py` with your own address.

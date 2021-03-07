@@ -24,11 +24,12 @@ $ pip install -r requirements.txt
 The predictions of our baseline models can be found via https://worksheets.codalab.org/worksheets/0x53f31035f34e4b6194ebe16179944297.
 Run `predict` command to reproduce the predictions. There are several commands to configure to run `predict`:
 ```
-[path_to_saved_model]
-[path_to_test_data]
--c [path_to_the_config_file]
---output-file [results_file_name] 
---cuda-device [cuda_device_to_use]
+python run.py predict
+  [path_to_saved_model]
+  [path_to_test_data]
+  -c [path_to_the_config_file]
+  --output-file [results_file_name] 
+  --cuda-device [cuda_device_to_use]
 ```
 
 

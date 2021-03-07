@@ -15,20 +15,22 @@ To study the three levels of generalization in KBQA, we implement a line of base
 ```
 GrailQA/
 ├─ model_configs/
-    ├─ train
-      ├─ 
-      ├─ 
-    ├─ test
-      ├─
-      ├─
-      ├─ 
-      ├─ 
-      ├─ 
-      ├─ 
-├─ data/: 
-├─ cache/: data preprocessing scripts
-├─ saved_models/: pre-trained models and results 
-├─ utils/: running scripts
+    ├─ train/: Configuration files for training
+    ├─ test/: Configuration files for inference
+├─ data/: Data files for training, validation, and test
+├─ ontology/: Processed Freebase ontology files
+    ├─ domain_dict: Mapping from a domain in Freebase Commons to all schema items in it
+    ├─ domain_info: Mapping from a schema item to a Freebase Commons domain it belongs to
+    ├─ fb_roles: Domain and range information for a relation (Note that here domain means a different thing from domains in Freebase Commons)
+    ├─ fb_types: Class hierarchy in Freebase
+    ├─ reverse_properties: Reverse properties in Freebase 
+├─ bert_configs/: BERT configuration used by pytorch_transformer, which you are very unlikely to modify
+├─ entity_linking/: Entity linking results 
+├─ vocabulary/: Preprocessed vocabulary, which is only required by our GloVe-based models
+├─ cache/: Cached results for SPARQL queries, which are used to accelerate the experiments by caching many SPARQL query results offline
+├─ saved_models/: Trained models
+├─ utils/
+    
 ├─ 
 ├─
 ├─

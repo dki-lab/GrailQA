@@ -30,6 +30,7 @@ $ pip install -r requirements.txt
 ### Training Command
 
 ## Citation
+```
 @article{gu2020beyond,
   title={Beyond IID: three levels of generalization for question answering on knowledge bases},
   author={Gu, Yu and Kase, Sue and Vanni, Michelle and Sadler, Brian and Liang, Percy and Yan, Xifeng and Su, Yu},
@@ -37,3 +38,4 @@ $ pip install -r requirements.txt
   year={2021},
   organization={ACM}
 }
+```

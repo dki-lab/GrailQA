@@ -65,19 +65,19 @@ python run.py predict
 ```
 Specifically, to run Ranking+BERT:
 ```
-PYTHONHASHSEED=23 python run.py predict saved_models/BERT/model.tar.gz data/grailqa_v1.0_test_public.json --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface --use-dataset-reader --predictor seq2seq -c model_configs/test/bert_ranking.jsonnet --output-file bert_ranking.txt --cuda-device 0
+$ PYTHONHASHSEED=23 python run.py predict saved_models/BERT/model.tar.gz data/grailqa_v1.0_test_public.json --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface --use-dataset-reader --predictor seq2seq -c model_configs/test/bert_ranking.jsonnet --output-file bert_ranking.txt --cuda-device 0
 ```
 To run Ranking+GloVe:
 ```
-PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.gz data/grailqa_v1.0_test_public.json --include-package constrained_seq2seq --include-package constrained_seq2seq_reader --predictor seq2seq --use-dataset-reader -c model_configs/test/glove_ranking.jsonnet --output-file glove_ranking.txt --cuda-device 0
+$ PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.gz data/grailqa_v1.0_test_public.json --include-package constrained_seq2seq --include-package constrained_seq2seq_reader --predictor seq2seq --use-dataset-reader -c model_configs/test/glove_ranking.jsonnet --output-file glove_ranking.txt --cuda-device 0
 ```
 To run Transduction+BERT:
 ```
-PYTHONHASHSEED=23 python run.py predict saved_models/BERT/model.tar.gz data/grailqa_v1.0_test_public.json --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface --use-dataset-reader --predictor seq2seq -c model_configs/test/bert_vp.jsonnet --output-file bert_vp.txt --cuda-device 0
+$ PYTHONHASHSEED=23 python run.py predict saved_models/BERT/model.tar.gz data/grailqa_v1.0_test_public.json --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface --use-dataset-reader --predictor seq2seq -c model_configs/test/bert_vp.jsonnet --output-file bert_vp.txt --cuda-device 0
 ```
 To run Transduction+GloVe:
 ```
-PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.gz data/grailqa_v1.0_test_public.json --include-package constrained_seq2seq --include-package constrained_seq2seq_reader --predictor seq2seq --use-dataset-reader -c model_configs/test/glove_vp.jsonnet --output-file glove_vp.txt --cuda-device 0
+$ PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.gz data/grailqa_v1.0_test_public.json --include-package constrained_seq2seq --include-package constrained_seq2seq_reader --predictor seq2seq --use-dataset-reader -c model_configs/test/glove_vp.jsonnet --output-file glove_vp.txt --cuda-device 0
 ```
 
 ### Entity Linking
@@ -102,11 +102,11 @@ perfect_entity_linking: Whether to assume gold entities are given.
 ### Training Command
 To train the BERT-based model, run:
 ```
-PYTHONHASHSEED=23 python run.py train model_configs/train/train_bert.jsonnet --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface -s [your_path_specified_for_training]
+$ PYTHONHASHSEED=23 python run.py train model_configs/train/train_bert.jsonnet --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface -s [your_path_specified_for_training]
 ```
 To train the GloVe-based model, run:
 ```
-PYTHONHASHSEED=23 python run.py train model_configs/train/train_glove.jsonnet --include-package constrained_seq2seq --include-package constrained_seq2seq_reader -s [your_path_specified_for_training]
+$ PYTHONHASHSEED=23 python run.py train model_configs/train/train_glove.jsonnet --include-package constrained_seq2seq --include-package constrained_seq2seq_reader -s [your_path_specified_for_training]
 ```
 
 ## Citation

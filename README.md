@@ -110,12 +110,13 @@ $ PYTHONHASHSEED=23 python run.py train model_configs/train/train_glove.jsonnet 
 ```
 
 ### Online Running Time
-We also show the running time of different models in online mode, in which offline caches are disabled. The aim of this setting is to mimic the real scenario in production.
+We also show the running time of inference in online mode, in which offline caches are disabled. The aim of this setting is to mimic the real scenario in production. To report the average running time, we random sample 1,000 test questions for each model, and set the batch size to be 1.
 |                        | Transduction | Transduction-BERT | Transduction-VP | Transduction-BERT-VP | Ranking | Ranking-BERT |
 |------------------------|--------------|-------------------|-----------------|----------------------|---------|--------------|
 | Running time (seconds) | 60.899       | 50.176            | 4.787           | 1.932                | 115.459 | 80.892       |
 
-We can see that the running time is quite long when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods.
+
+We can see that the running time is quite long when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods. This issue has to some extend been underaddressed. A common practice is to use offline cache to store the exectuions of all related SPARQL queries, which assumes the test questions are known in advance (this assumption is true for existing KBQA benchmarks, but this does not necessarily mean it is realistic in production).
 
 ## Citation
 ```

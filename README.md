@@ -1,5 +1,5 @@
 # GrailQA: Strongly <ins>G</ins>ene<ins>ra</ins>l<ins>i</ins>zab<ins>l</ins>e Question Answering
-[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg?style=flat-square)]()
+[![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg?style=flat-square)](https://github.com/dki-lab/GrailQA/issues)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![language-python3](https://img.shields.io/badge/Language-Python3-blue.svg?style=flat-square)](https://www.python.org/)
 [![made-with-Pytorch](https://img.shields.io/badge/Made%20with-Pytorch-orange.svg?style=flat-square)](https://pytorch.org/)
@@ -29,13 +29,16 @@ GrailQA/
 ├─ vocabulary/: Preprocessed vocabulary, which is only required by our GloVe-based models
 ├─ cache/: Cached results for SPARQL queries, which are used to accelerate the experiments by caching many SPARQL query results offline
 ├─ saved_models/: Trained models
-├─ utils/
-    
-├─ 
-├─
-├─
-├─
-├─
+├─ utils/:
+    ├─ bert_interface.py: Interface to BERT 
+    ├─ logic_form_util: Tools related to logical forms, including the exact match checker for two logical forms
+    ├─ search_over_graphs.py: Generate candidate logical forms for our Ranking models
+    ├─ sparql_executor: Sparql-related tools
+├─ bert_constrained_seq2seq.py: BERT-based model for both Ranking and Transduction
+├─ bert_seq2seq_reader.py: Data reader for BERT-based models
+├─ constrained_seq2seq.py: GloVe-based model for both Ranking and Transduction
+├─ constrained_seq2seq_reader.py: Data reader for GloVe-based models
+├─ run.py: Main function
 ```
 
 ## Setup

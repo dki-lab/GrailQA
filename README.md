@@ -110,7 +110,7 @@ $ PYTHONHASHSEED=23 python run.py train model_configs/train/train_glove.jsonnet 
 ```
 
 ### Online Running Time
-We also show the running time of inference in online mode, in which offline caches are disabled. The aim of this setting is to mimic the real scenario in production. To report the average running time, we random sample 1,000 test questions for each model, and set the batch size to be 1.
+We also show the running time of inference in online mode, in which offline caches are disabled. The aim of this setting is to mimic the real scenario in production. To report the average running time, we random sample 1,000 test questions for each model and run every model on a single 2080-ti GPU card with batch size 1.
 |                        | Transduction | Transduction-BERT | Transduction-VP | Transduction-BERT-VP | Ranking | Ranking-BERT |
 |------------------------|--------------|-------------------|-----------------|----------------------|---------|--------------|
 | Running time (seconds) | 60.899       | 50.176            | 4.787           | 1.932                | 115.459 | 80.892       |

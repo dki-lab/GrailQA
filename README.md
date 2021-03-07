@@ -54,7 +54,7 @@ $ pip install -r requirements.txt
 
 ## Reproduce Our Results
 The predictions of our baseline models can be found via [CodaLab](https://worksheets.codalab.org/worksheets/0x53f31035f34e4b6194ebe16179944297).
-Run `predict` command to reproduce the predictions. There are several commands to configure to run `predict`:
+Run `predict` command to reproduce the predictions. There are several arguments to configure to run `predict`:
 ```
 python run.py predict
   [path_to_saved_model]

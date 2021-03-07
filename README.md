@@ -90,7 +90,7 @@ You can also use our code to train new models.
 ### Training Configuration
 Following [AllenNLP](https://github.com/allenai/allennlp), our `train` command also takes a configuration file as input to specify all model hyperparameters and training related parameters such as learning rate, batch size, cuda device, etc. Most parameters in the training configuration files (i.e., files under `model_configs/train/`) are quite intutive based on their names, so we will only explain those parameters that might be confusing here.
 ```diff
-- adfadf
+dsfds
 ```
 ### Training Command
 To train the BERT-based model, run:

@@ -116,7 +116,7 @@ We also show the running time of inference in online mode, in which offline cach
 | Running time (seconds) | 60.899       | 50.176            | 4.787           | 1.932                | 115.459 | 80.892       |
 
 
-We can see that the running time is quite long when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods. This issue has to some extend been underaddressed. A common practice is to use offline cache to store the exectuions of all related SPARQL queries, which assumes the test questions are known in advance (this assumption is true for existing KBQA benchmarks, but this does not necessarily mean it is realistic in production).
+The running time is quite long when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods. This issue has to some extend been underaddressed. A common practice is to use offline cache to store the exectuions of all related SPARQL queries, which assumes the test questions are known in advance (this assumption is true for existing KBQA benchmarks, but this does not necessarily mean it is realistic in production).
 
 ## Citation
 ```

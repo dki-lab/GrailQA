@@ -21,7 +21,7 @@ $ pip install -r requirements.txt
 **(Note: you do not need to install AllenNLP by yourself, because we have included our local version of AllenNLP in this repo.)**
 
 ## Reproduce Our Results
-The predictions of our baseline models can be found via https://worksheets.codalab.org/worksheets/0x53f31035f34e4b6194ebe16179944297.
+The predictions of our baseline models can be found via [CodaLab](https://worksheets.codalab.org/worksheets/0x53f31035f34e4b6194ebe16179944297).
 Run `predict` command to reproduce the predictions. There are several commands to configure to run `predict`:
 ```
 python run.py predict
@@ -30,6 +30,22 @@ python run.py predict
   -c [path_to_the_config_file]
   --output-file [results_file_name] 
   --cuda-device [cuda_device_to_use]
+```
+Specifically, to run Ranking+BERT:
+```
+PYTHONHASHSEED=23 python run.py predict saved_models/BERT/model.tar.gz data/grailqa_v1.0_test_public.json --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface --use-dataset-reader --predictor seq2seq -c model_configs/test/bert_ranking.jsonnet --output-file bert_ranking.txt --cuda-device 0
+```
+To run Ranking+GloVe:
+```
+PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.gz data/grailqa_v1.0_test_public.json --include-package constrained_seq2seq --include-package constrained_seq2seq_reader --predictor seq2seq --use-dataset-reader -c model_configs/test/glove_ranking.jsonnet --output-file glove_ranking.txt --cuda-device 0
+```
+To run Transduction+BERT:
+```
+PYTHONHASHSEED=23 python run.py predict saved_models/BERT/model.tar.gz data/grailqa_v1.0_test_public.json --include-package bert_constrained_seq2seq --include-package bert_seq2seq_reader --include-package utils.bert_interface --use-dataset-reader --predictor seq2seq -c model_configs/test/bert_vp.jsonnet --output-file bert_vp.txt --cuda-device 0
+```
+To run Transduction+GloVe:
+```
+PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.gz data/grailqa_v1.0_test_public.json --include-package constrained_seq2seq --include-package constrained_seq2seq_reader --predictor seq2seq --use-dataset-reader -c model_configs/test/glove_vp.jsonnet --output-file glove_vp.txt --cuda-device 0
 ```
 
 

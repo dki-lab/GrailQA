@@ -81,9 +81,13 @@ $ PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.g
 ```
 
 ### Entity Linking
-We also provide instructions on reproduce our entity linking results to benefit future research. Similar to most existing KBQA methods, entity linking is a separate module from our main model. If you just want to run our main models, you do not need to re-run our entity linking module because our models directly retrieve the produce entity linking results under `entity_linking/`.
-(To be continued...)
+We also release our code for entity linking to benefit future research. Similar to most existing KBQA methods, entity linking is a separate module from our main model. If you just want to run our main models, you do not need to re-run our entity linking module because our models directly retrieve the produce entity linking results under `entity_linking/`.
+Our entity linker is based on [BERT-NER](https://github.com/kamalkraj/BERT-NER) and the popularity-based entity disambiguation in [aqqu](https://github.com/ad-freiburg/aqqu). Specifically, we use the NER model to identify a set of mentions, and then use the identified mentions to retieve Freebase entities from the entity memory constructed from Freebase entity mentions information (i.e., mentions in FACC1 and all alias in Freebase if not included in FACC1<sup>1</sup>). For more detailed information, please refer to the original two projects.
+To run our entity linker, first download the mentions data from https://1drv.ms/u/s!AuJiG47gLqTznjl7VbnOESK6qPW2?e=HDy2Ye and put all data under `entity_linker/data/`.
+Second, download our trained NER model from https://1drv.ms/u/s!AuJiG47gLqTznjge7wLqAZiSMIcU?e=5RpKaC, which is trained using the training data of GrailQA, and put it under `entity_linker/BERT_NER/`.
+Then you should be all set! We provide use example in `entity_linker/bert_entity_linker.py`. Follow the use example to identiy entities using our entity linker for your own data.
 
+[1]: FACC1 containes the mentions information for around 1/8 or Freebase entities, including different mentions for those entities and number of occurrences for each mention. For entities not included in FACC1, we use the following properties to retrieve the mentions for each entity: `<http://rdf.freebase.com/ns/type.object.name>`, `<http://rdf.freebase.com/ns/common.topic.alias>`, `<http://rdf.freebase.com/key/wikipedia.en>`. Note that, we don't have information for number of occurences for those entity mentions, so we simply treat the number of occurences as 1 for all of them in our implementation.
 
 ## Train New Models
 You can also use our code to train new models.

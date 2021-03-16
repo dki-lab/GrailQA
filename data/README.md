@@ -1,0 +1,1 @@
+Processed GraphQuestions dataset is uploaded here. For GrailQA, please download it from https://dl.orangedox.com/WyaCpL/.

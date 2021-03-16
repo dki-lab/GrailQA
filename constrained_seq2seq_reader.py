@@ -166,10 +166,10 @@ class Constrained_Seq2SeqDatasetReader(DatasetReader):
                         if node['node_type'] == 'literal' and node['function'] not in ['argmin', 'argmax']:
                             literals.add(node['id'])
                 else:
-                    entity_map = self.el_results[item['qid']]
+                    entity_map = self.el_results[item['qid']]['entities']
                     entities = set(entity_map.keys())
                     for k in entity_map:
-                        v = entity_map[k]
+                        v = entity_map[k]['friendly_name']
                         entity_map[k] = ' '.join(v.split()[:5])
                     literals = set()
                     mentions = self.extractor.detect_mentions(item['question'])

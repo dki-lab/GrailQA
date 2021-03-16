@@ -166,10 +166,10 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                             literals.add(node['id'])
                 else:
                     # entity_map = self.linker.get_entities(item['question'])
-                    entity_map = self.el_results[item['qid']]
+                    entity_map = self.el_results[item['qid']]['entities']
                     entities = set(entity_map.keys())
                     for k in entity_map:
-                        v = entity_map[k]
+                        v = entity_map[k]['friendly_name']
                         entity_map[k] = ' '.join(v.replace(self._delimiter, ' ').split()[:5])
                     # print("linked entities:", entities)
                     literals = set()

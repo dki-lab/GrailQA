@@ -26,7 +26,7 @@ GrailQA/
     ├─ reverse_properties: Reverse properties in Freebase 
 ├─ bert_configs/: BERT configuration used by pytorch_transformer, which you are very unlikely to modify
 ├─ entity_linking_results/: Entity linking results 
-├─ entity_linker: source code for the entity linker, which is a separate module from our main model
+├─ entity_linker/: source code for the entity linker, which is a separate module from our main model
 ├─ vocabulary/: Preprocessed vocabulary, which is only required by our GloVe-based models
 ├─ cache/: Cached results for SPARQL queries, which are used to accelerate the experiments by caching many SPARQL query results offline
 ├─ saved_models/: Trained models

@@ -44,7 +44,7 @@ GrailQA/
 There are several steps you need to do before running our code.
 1. Follow [Freebase Setup](https://github.com/dki-lab/Freebase-Setup) to run your own Virtuoso service. After starting your virtuoso service, replace the url in `utils/sparql_executer.py` with your own address.
 2. Download cache files from https://1drv.ms/u/s!AuJiG47gLqTznjfRRxdW5YDYFt3o?e=GawH1f and put all the files under `cache/`.
-3. Download trained models from https://1drv.ms/u/s!AuJiG47gLqTznjaviBVyXM4tOa4J?e=XaGp8d and put all the files under `saved_models/`.
+3. Download trained models from https://1drv.ms/u/s!AuJiG47gLqTznxbenfeRBrTuTbWz?e=g5Nazi and put all the files under `saved_models/`.
 4. Download GrailQA dataset and put it under `data/`.
 5. Install all required libraries:
 ```

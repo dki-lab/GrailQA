@@ -8,10 +8,12 @@
 
 >GrailQA is a new large-scale, high-quality KBQA dataset with 64,331 questions annotated with both answers and corresponding logical forms in different syntax (i.e., SPARQL, S-expression, etc.). It can be used to test three levels of generalization in KBQA: **i.i.d.**, **compositional**, and **zero-shot**.
 
->For dataset and leaderboard, please refer to the [homepage of GrailQA](https://dki-lab.github.io/GrailQA/). In this repository, we help you to reproduce the results of our baseline models and to train new models using our code.
+>For dataset and leaderboard, please refer to the [homepage of GrailQA](https://dki-lab.github.io/GrailQA/). In this repository, we provide the code for the baseline models for reproducibility and demonstrate how to work with this dataset.
 
 ## Package Description
-The following lengthy descriptions might seem intimidating. You can view it as a reference to help you understand our code when you try to implement your own model using our implementations later, but for now it is totally fine to skip them if you only want to run our models. :blush:
+
+This repository is structured as follows:
+
 ```
 GrailQA/
 ├─ model_configs/
@@ -41,9 +43,11 @@ GrailQA/
 ├─ constrained_seq2seq_reader.py: Data reader for GloVe-based models
 ├─ run.py: Main function
 ```
+
 ## Setup
-There are several steps you need to do before running our code.
-1. Follow [Freebase Setup](https://github.com/dki-lab/Freebase-Setup) to run your own Virtuoso service. After starting your virtuoso service, replace the url in `utils/sparql_executer.py` with your own address.
+
+Follow these steps if you want to reproduce the results in the paper.
+1. Follow [Freebase Setup](https://github.com/dki-lab/Freebase-Setup) to set up a Virtuoso triplestore service. After starting your virtuoso service, replace the url in `utils/sparql_executer.py` with your own.
 2. Download cache files from https://1drv.ms/u/s!AuJiG47gLqTznjfRRxdW5YDYFt3o?e=GawH1f and put all the files under `cache/`.
 3. Download trained models from https://1drv.ms/u/s!AuJiG47gLqTznxbenfeRBrTuTbWz?e=g5Nazi and put all the files under `saved_models/`.
 4. Download GrailQA dataset and put it under `data/`.
@@ -51,9 +55,10 @@ There are several steps you need to do before running our code.
 ```
 $ pip install -r requirements.txt
 ```
-**(Note: you do not need to install AllenNLP by yourself, because we have included our local version of AllenNLP in this repo.)**
+**(Note: we have included our adapted version of AllenNLP in this repo so there's no need to separately install that.)**
 
 ## Reproduce Our Results
+
 The predictions of our baseline models can be found via [CodaLab](https://worksheets.codalab.org/worksheets/0x53f31035f34e4b6194ebe16179944297).
 Run `predict` command to reproduce the predictions. There are several arguments to configure to run `predict`:
 ```
@@ -82,18 +87,21 @@ $ PYTHONHASHSEED=23 python run.py predict predict saved_models/GloVe/model.tar.g
 ```
 
 ### Entity Linking
-We also release our code for entity linking to benefit future research. Similar to most existing KBQA methods, entity linking is a separate module from our main model. If you just want to run our main models, you do not need to re-run our entity linking module because our models directly retrieve the produce entity linking results under `entity_linking/`.
-Our entity linker is based on [BERT-NER](https://github.com/kamalkraj/BERT-NER) and the popularity-based entity disambiguation in [aqqu](https://github.com/ad-freiburg/aqqu). Specifically, we use the NER model to identify a set of mentions, and then use the identified mentions to retieve Freebase entities from the entity memory constructed from Freebase entity mentions information (i.e., mentions in FACC1 and all alias in Freebase if not included in FACC1<sup>1</sup>). For more detailed information, please refer to the original two projects.
+We also release our code for entity linking to facilitate future research. Similar to most other KBQA methods, entity linking is a separate module from our main model. If you just want to run our main models, you do not need to re-run our entity linking module because our models directly use the entity linking results under `entity_linking/`.
+
+Our entity linker is based on [BERT-NER](https://github.com/kamalkraj/BERT-NER) and the popularity-based entity disambiguation in [aqqu](https://github.com/ad-freiburg/aqqu). Specifically, we use the NER model to identify a set of entity mentions, and then use the identified mentions to retieve Freebase entities from the entity memory constructed from Freebase entity mentions information (i.e., mentions in FACC1 and all alias in Freebase if not included in FACC1<sup>1</sup>). 
+
 To run our entity linker, first download the mentions data from https://1drv.ms/u/s!AuJiG47gLqTznjl7VbnOESK6qPW2?e=HDy2Ye and put all data under `entity_linker/data/`.
 Second, download our trained NER model from https://1drv.ms/u/s!AuJiG47gLqTznjge7wLqAZiSMIcU?e=5RpKaC, which is trained using the training data of GrailQA, and put it under `entity_linker/BERT_NER/`.
-Then you should be all set! We provide use example in `entity_linker/bert_entity_linker.py`. Follow the use example to identiy entities using our entity linker for your own data.
+Then you should be all set! We provide a use example in `entity_linker/bert_entity_linker.py`. Follow the use example to identiy entities using our entity linker for your own data.
 
-[1]: FACC1 containes the mentions information for around 1/8 or Freebase entities, including different mentions for those entities and number of occurrences for each mention. For entities not included in FACC1, we use the following properties to retrieve the mentions for each entity: `<http://rdf.freebase.com/ns/type.object.name>`, `<http://rdf.freebase.com/ns/common.topic.alias>`, `<http://rdf.freebase.com/key/wikipedia.en>`. Note that, we don't have information for number of occurences for those entity mentions, so we simply treat the number of occurences as 1 for all of them in our implementation.
+[1]: FACC1 containes the mentions information for around 1/8 of Freebase entities, including different mentions for those entities and the frequency for each mention. For entities not included in FACC1, we use the following properties to retrieve the mentions for each entity: `<http://rdf.freebase.com/ns/type.object.name>`, `<http://rdf.freebase.com/ns/common.topic.alias>`, `<http://rdf.freebase.com/key/wikipedia.en>`. Note that we don't have frequency information for those entity mentions, so we simply treat the number of occurences as 1 for all of them in our implementation.
 
 ## Train New Models
 You can also use our code to train new models.
+
 ### Training Configuration
-Following [AllenNLP](https://github.com/allenai/allennlp), our `train` command also takes a configuration file as input to specify all model hyperparameters and training related parameters such as learning rate, batch size, cuda device, etc. Most parameters in the training configuration files (i.e., files under `model_configs/train/`) are quite intutive based on their names, so we will only explain those parameters that might be confusing here.
+Following [AllenNLP](https://github.com/allenai/allennlp), our `train` command also takes a configuration file as input to specify all model hyperparameters and training related parameters such as learning rate, batch size, cuda device, etc. Most parameters in the training configuration files (i.e., files under `model_configs/train/`) are hopefully intutive based on their names, so we will only explain those parameters that might be confusing here.
 ```
 ranking: Ranking model or generation mode. True for Ranking, and false for Transduction.
 offline: Whether to use cached files under cache/.
@@ -104,6 +112,7 @@ use_constrained_vocab: Whether to do vocabulary pruning or not.
 constrained_vocab: If we do vocabulary pruning, how to do it? Options include 1_step, 2_step and mix2.
 perfect_entity_linking: Whether to assume gold entities are given.
 ```
+
 ### Training Command
 To train the BERT-based model, run:
 ```
@@ -115,13 +124,14 @@ $ PYTHONHASHSEED=23 python run.py train model_configs/train/train_glove.jsonnet 
 ```
 
 ### Online Running Time
-We also show the running time of inference in online mode, in which offline caches are disabled. The aim of this setting is to mimic the real scenario in production. To report the average running time, we random sample 1,000 test questions for each model and run every model on a single GeoForce RTX 2080-ti GPU card with batch size 1.
+We also show the running time of inference in online mode, in which offline caches are disabled. The aim of this setting is to mimic the real scenario in production. To report the average running time, we randomly sample 1,000 test questions for each model and run every model on a single GeoForce RTX 2080-ti GPU card with batch size 1. A comparison of different models is shown below:
+
 |                        | Transduction | Transduction-BERT | Transduction-VP | Transduction-BERT-VP | Ranking | Ranking-BERT |
 |------------------------|--------------|-------------------|-----------------|----------------------|---------|--------------|
 | Running time (seconds) | 60.899       | 50.176            | 4.787           | 1.932                | 115.459 | 80.892       |
 
 
-The running time is quite long when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods. This issue has to some extend been underaddressed. A common practice is to use offline cache to store the exectuions of all related SPARQL queries, which assumes the test questions are known in advance (this assumption is true for existing KBQA benchmarks, but this does not necessarily mean it is realistic in production).
+The running time is quite significant when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods. This issue has to some extend been underaddressed so far. A common practice is to use offline cache to store the exectuions of all related SPARQL queries, which assumes the test questions are known in advance. This assumption is true for existing KBQA benchmarks but is not realistic for a real production system. How to improve the efficiency of KBQA models while maintaining their efficacy is still an active area for research.
 
 ## Citation
 ```

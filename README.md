@@ -8,7 +8,7 @@
 
 >GrailQA is a new large-scale, high-quality KBQA dataset with 64,331 questions annotated with both answers and corresponding logical forms in different syntax (i.e., SPARQL, S-expression, etc.). It can be used to test three levels of generalization in KBQA: **i.i.d.**, **compositional**, and **zero-shot**.
 
->For dataset and leaderboard, please refer to the [homepage of GrailQA](https://dki-lab.github.io/GrailQA/). In this repository, we provide the code for the baseline models for reproducibility and demonstrate how to work with this dataset.
+>This is the accompanying code for the paper "[Beyond I.I.D.: Three Levels of Generalization for Question Answering on Knowledge Bases](https://arxiv.org/abs/2011.07743)" published at TheWebConf (previously WWW) 2021. For dataset and leaderboard, please refer to the [homepage of GrailQA](https://dki-lab.github.io/GrailQA/). In this repository, we provide the code for the baseline models for reproducibility and demonstrate how to work with this dataset.
 
 ## Package Description
 
@@ -126,19 +126,19 @@ $ PYTHONHASHSEED=23 python run.py train model_configs/train/train_glove.jsonnet 
 ### Online Running Time
 We also show the running time of inference in online mode, in which offline caches are disabled. The aim of this setting is to mimic the real scenario in production. To report the average running time, we randomly sample 1,000 test questions for each model and run every model on a single GeoForce RTX 2080-ti GPU card with batch size 1. A comparison of different models is shown below:
 
-|                        | Transduction | Transduction-BERT | Transduction-VP | Transduction-BERT-VP | Ranking | Ranking-BERT |
-|------------------------|--------------|-------------------|-----------------|----------------------|---------|--------------|
-| Running time (seconds) | 60.899       | 50.176            | 4.787           | 1.932                | 115.459 | 80.892       |
+|                        | Transduction   | Transduction-BERT   | Transduction-VP   | Transduction-BERT-VP   | Ranking   | Ranking-BERT   |
+|------------------------|:--------------:|:-------------------:|:-----------------:|:----------------------:|:---------:|:--------------:|
+| Running time (seconds) | 60.899         | 50.176              | 4.787             | 1.932                  | 115.459   | 80.892         |
 
 
 The running time is quite significant when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods. This issue has to some extend been underaddressed so far. A common practice is to use offline cache to store the exectuions of all related SPARQL queries, which assumes the test questions are known in advance. This assumption is true for existing KBQA benchmarks but is not realistic for a real production system. How to improve the efficiency of KBQA models while maintaining their efficacy is still an active area for research.
 
 ## Citation
 ```
-@article{gu2021beyond,
+@inproceedings{gu2021beyond,
   title={Beyond IID: three levels of generalization for question answering on knowledge bases},
   author={Gu, Yu and Kase, Sue and Vanni, Michelle and Sadler, Brian and Liang, Percy and Yan, Xifeng and Su, Yu},
-  journal={The World Wide Web Conference},
+  booktitle={The World Wide Web Conference},
   year={2021},
   organization={ACM}
 }

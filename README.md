@@ -138,8 +138,8 @@ The running time is quite significant when either ranking mode or vocabulary pru
 @inproceedings{gu2021beyond,
   title={Beyond IID: three levels of generalization for question answering on knowledge bases},
   author={Gu, Yu and Kase, Sue and Vanni, Michelle and Sadler, Brian and Liang, Percy and Yan, Xifeng and Su, Yu},
-  booktitle={The World Wide Web Conference},
-  year={2021},
+  booktitle={Proceedings of the Web Conference 2021},
+  pages={3477--3488},
   organization={ACM}
 }
 ```

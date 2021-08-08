@@ -91,6 +91,121 @@
     "leaderboard": [
         {
             "bundle": {
+                "args": "run evaluate.py:0x2d13989c17e44690ab62cc4edc0b900d test.json:0x2f0bdc8049964a1eb6edf14753d0b74d predict.json:0x636f72535657461b89fb57eb1f65e207 fb_roles:0x0ad46f557075407984c440c9ded502d3 fb_types:0x0277abdf23c049ba82507fd8bd45ad7b reverse_properties:0x4075d04609c1453a9939ae985d6fa5aa \"python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties\" --request-cpus 1 --request-memory 2g",
+                "bundle_type": "run",
+                "command": "python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties",
+                "data_hash": "0xc58a358f4057ca4e22fa1c122b55f5742dda02e5",
+                "dependencies": [
+                    {
+                        "child_path": "evaluate.py",
+                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "parent_name": "evaluate.py",
+                        "parent_path": "",
+                        "parent_uuid": "0x2d13989c17e44690ab62cc4edc0b900d"
+                    },
+                    {
+                        "child_path": "test.json",
+                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "parent_name": "grailqa_v1.0_test.json",
+                        "parent_path": "",
+                        "parent_uuid": "0x2f0bdc8049964a1eb6edf14753d0b74d"
+                    },
+                    {
+                        "child_path": "predict.json",
+                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "parent_name": "xiye17-predictions-RnGKBQACor-predict",
+                        "parent_path": "",
+                        "parent_uuid": "0x636f72535657461b89fb57eb1f65e207"
+                    },
+                    {
+                        "child_path": "fb_roles",
+                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "parent_name": "fb_roles",
+                        "parent_path": "",
+                        "parent_uuid": "0x0ad46f557075407984c440c9ded502d3"
+                    },
+                    {
+                        "child_path": "fb_types",
+                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "parent_name": "fb_types",
+                        "parent_path": "",
+                        "parent_uuid": "0x0277abdf23c049ba82507fd8bd45ad7b"
+                    },
+                    {
+                        "child_path": "reverse_properties",
+                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "parent_name": "reverse_properties",
+                        "parent_path": "",
+                        "parent_uuid": "0x4075d04609c1453a9939ae985d6fa5aa"
+                    }
+                ],
+                "frozen": null,
+                "id": "0x496846b601bc4dd1bf365e87f19d5548",
+                "is_anonymous": false,
+                "metadata": {
+                    "actions": [],
+                    "allow_failed_dependencies": false,
+                    "cpu_usage": 0.0,
+                    "created": 1628287412,
+                    "data_size": 9993488,
+                    "description": "{\"submit_id\": \"0x34922290817d4b5b85e15a0a4c36c5e5\", \"submitter_id\": \"0x842675d614884976957187a0ad146e6b\", \"predict_id\": \"0x636f72535657461b89fb57eb1f65e207\"}",
+                    "docker_image": "codalab/default-cpu@sha256:bd94f8ec0a670e052d196d4b1047e666bf5b9877b82ee6bcc98875a20b6b4ead",
+                    "exclude_patterns": [],
+                    "exitcode": 0,
+                    "last_updated": 1628287738,
+                    "memory_usage": 0.0,
+                    "name": "xiye17-predictions-RnGKBQACor-results",
+                    "remote": "58e82518f0b6-67cbfa926c4244838875dfea6ae706b1",
+                    "request_cpus": 1,
+                    "request_disk": "",
+                    "request_docker_image": "",
+                    "request_gpus": 0,
+                    "request_memory": "2g",
+                    "request_network": false,
+                    "request_priority": 0,
+                    "request_queue": "",
+                    "request_time": "",
+                    "run_status": "Finished",
+                    "started": 1628287656,
+                    "tags": [
+                        "dauqs-test-eval"
+                    ],
+                    "time": 11.488053,
+                    "time_cleaning_up": 11.264952659606934,
+                    "time_preparing": 20.088744163513184,
+                    "time_running": 26.23998713493347,
+                    "time_system": 0.0,
+                    "time_uploading_results": 22.42937397956848,
+                    "time_user": 0.0
+                },
+                "owner": {
+                    "id": "0xb8f8738c221c44329f9d0ab9e4e00f3a",
+                    "type": "users"
+                },
+                "permission": 2,
+                "permission_spec": "all",
+                "state": "ready",
+                "uuid": "0x496846b601bc4dd1bf365e87f19d5548"
+            },
+            "scores": {
+                "em": 0.6768195903559822,
+                "em_comp": 0.6311369509043928,
+                "em_zero": 0.6241175623109062,
+                "f1": 0.7316400407236384,
+                "f1_comp": 0.7001673209550585,
+                "f1_zero": 0.6858296111764944
+            },
+            "submission": {
+                "created": 1628281235,
+                "description": "RnG-KBQA (single model) (Anonymous)",
+                "num_period_submissions": 0,
+                "num_total_submissions": 1,
+                "public": true,
+                "user_name": "xiye17"
+            }
+        },
+        {
+            "bundle": {
                 "args": "run evaluate.py:0x2d13989c17e44690ab62cc4edc0b900d test.json:0x2f0bdc8049964a1eb6edf14753d0b74d predict.json:0x60da854fd7ba47d4a3f416b77fe9683d fb_roles:0x0ad46f557075407984c440c9ded502d3 fb_types:0x0277abdf23c049ba82507fd8bd45ad7b reverse_properties:0x4075d04609c1453a9939ae985d6fa5aa \"python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties\" --request-cpus 1 --request-memory 2g",
                 "bundle_type": "run",
                 "command": "python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties",
@@ -190,7 +305,7 @@
             },
             "submission": {
                 "created": 1617675783,
-                "description": "ReTraCk (single model) (Anonymous)",
+                "description": "ReTraCk (single model) (Microsoft Research Asia)",
                 "num_period_submissions": 1,
                 "num_total_submissions": 2,
                 "public": true,

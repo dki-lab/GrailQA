@@ -91,9 +91,7 @@ var parseCompEntries = function (comp_file, option) {
         entry.em = (parseFloat(o_entry.scores.em_zero) * 100)
         entry.f1 = (parseFloat(o_entry.scores.f1_zero) * 100)
       }
-      if (entry.user === 'YuGu') {
-        console.log(entry)
-      }
+      console.log(entry)
       if (!(entry.em >= 0)) throw 'Score invalid'
       // if (entry.em < 10) throw 'Score too low'
       //if (entry.model_name === '') {

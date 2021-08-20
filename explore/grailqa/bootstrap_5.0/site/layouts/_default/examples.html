@@ -44,12 +44,12 @@
 
     {{ if ne .Page.Params.include_js false -}}
       <script src="{{ .Site.Params.cdn.jquery }}" {{ printf "integrity=%q" .Site.Params.cdn.jquery_hash | safeHTMLAttr }} crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+      <script>window.jQuery || document.write('<script src="/GrailQA/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
 
       {{- if eq hugo.Environment "production" -}}
-        <script src="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.min.js" {{ printf "integrity=%q" .Site.Params.cdn.js_bundle_hash | safeHTMLAttr }} crossorigin="anonymous"></script>
+        <script src="/GrailQA/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.min.js" {{ printf "integrity=%q" .Site.Params.cdn.js_bundle_hash | safeHTMLAttr }} crossorigin="anonymous"></script>
       {{- else -}}
-        <script src="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.js"></script>
+        <script src="/GrailQA/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/dist/js/bootstrap.bundle.js"></script>
       {{- end }}
 
       {{ range .Page.Params.extra_js }}

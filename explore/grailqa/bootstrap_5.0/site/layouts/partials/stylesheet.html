@@ -1,8 +1,8 @@
 {{- "<!-- Bootstrap core CSS -->" | safeHTML }}
 {{ if eq hugo.Environment "production" -}}
-<link href="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/dist/css/bootstrap.min.css" rel="stylesheet" {{ printf "integrity=%q" .Site.Params.cdn.css_hash | safeHTMLAttr }} crossorigin="anonymous">
+<link href="/GrailQA/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/dist/css/bootstrap.min.css" rel="stylesheet" {{ printf "integrity=%q" .Site.Params.cdn.css_hash | safeHTMLAttr }} crossorigin="anonymous">
 {{- else -}}
-<link href="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/dist/css/bootstrap.css" rel="stylesheet">
+<link href="/GrailQA/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/dist/css/bootstrap.css" rel="stylesheet">
 {{- end }}
 
 {{ if (or (eq .Page.Layout "docs") (eq .Page.Layout "single")) -}}

@@ -32,29 +32,15 @@ pre {
 .listContainer .infoBody {
   padding: 10px 20px;
 }
-.qas-wrap {
-  max-height: 500px;
-  overflow: scroll;
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
 }
-.qas-wrap .correct-qa {
-  border-left: 5px solid #29e21f;
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 1.5px;
 }
-.qas-wrap .wrong-qa {
-  border-left: 5px solid #e2461f;
-}
-.qas-wrap .partial-qa {
-  border-left: 5px solid #e2c62f;
-}
-.qas-wrap .prediction-holder {
-  display: none;
-}
-.qas-wrap .answer,
-.qas-wrap .prediction {
-  margin-right: 4px;
-  border: 1px solid #ddd;
-  padding-left: 2px;
-  padding-right: 2px;
-}
-.qas-wrap .no-answer {
-  font-family: monospace;
+svg text {
+  font-family: sans-serif;
+  font-size: 10px;
 }

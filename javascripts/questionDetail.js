@@ -25,8 +25,7 @@ angular.module("Explorer").component("questionDetail", {
         this.color_correct = function (event) {
             var className = ""
             if (event.type === "mouseenter") {
-                var answer_args = this.question.answer.map(function (ans) { return ans.answer_argument });
-                if (answer_args.includes(event.target.innerText)) { className = "correct" }
+                if (this.preview_preds().answer.includes(event.target.innerText)) { className = "correct" }
                 else { className = "incorrect" }
             }
             event.target.className = className;

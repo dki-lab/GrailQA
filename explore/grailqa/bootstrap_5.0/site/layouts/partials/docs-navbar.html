@@ -1,18 +1,18 @@
 <header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
-  <a class="navbar-brand mr-0 mr-md-2" href="/GrailQA/GrailQA/GrailQA/" aria-label="Bootstrap">
+  <a class="navbar-brand mr-0 mr-md-2" href="/GrailQA/GrailQA/GrailQA/GrailQA/" aria-label="Bootstrap">
     {{ partial "icons/bootstrap.svg" (dict "class" "d-block" "width" "36" "height" "36") }}
   </a>
 
   <div class="navbar-nav-scroll">
     <ul class="navbar-nav bd-navbar-nav flex-row">
       <li class="nav-item">
-        <a class="nav-link{{ if .IsHome }} active{{ end }}" href="/GrailQA/GrailQA/GrailQA/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');">Home</a>
+        <a class="nav-link{{ if .IsHome }} active{{ end }}" href="/GrailQA/GrailQA/GrailQA/GrailQA/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Bootstrap');">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link{{ if eq .Page.Layout "docs" }} active{{ end }}" href="/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/getting-started/introduction/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Documentation</a>
+        <a class="nav-link{{ if eq .Page.Layout "docs" }} active{{ end }}" href="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/getting-started/introduction/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">Documentation</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link{{ if eq .Page.Title "Examples" }} active{{ end }}" href="/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/examples/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">Examples</a>
+        <a class="nav-link{{ if eq .Page.Title "Examples" }} active{{ end }}" href="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/examples/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Examples');">Examples</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ .Site.Params.icons }}" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Icons');" target="_blank" rel="noopener">Icons</a>
@@ -35,14 +35,14 @@
         v{{ .Site.Params.docs_version }}
       </a>
       <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
-        <a class="dropdown-item active" href="/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/">Latest (4.6.x)</a>
+        <a class="dropdown-item active" href="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/">Latest (4.6.x)</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="https://getbootstrap.com/docs/5.0/">5.0.x</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="https://getbootstrap.com/docs/3.4/">v3.4.1</a>
         <a class="dropdown-item" href="https://getbootstrap.com/2.3.2/">v2.3.2</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/GrailQA/GrailQA/GrailQA/docs/versions/">All versions</a>
+        <a class="dropdown-item" href="/GrailQA/GrailQA/GrailQA/GrailQA/docs/versions/">All versions</a>
       </div>
     </li>
 
@@ -68,5 +68,5 @@
     </li>
   </ul>
 
-  <a class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/getting-started/download/">Download</a>
+  <a class="btn btn-bd-download d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="/GrailQA/GrailQA/GrailQA/GrailQA/docs/{{ .Site.Params.docs_version }}/getting-started/download/">Download</a>
 </header>

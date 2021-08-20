@@ -418,6 +418,7 @@ body {
   height: 100%;
 }
 body {
+  padding-top: 50px;
   letter-spacing: 0.005em;
 }
 body,

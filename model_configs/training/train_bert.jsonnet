@@ -89,9 +89,9 @@ local use_sparql = false;
     "track_epoch" : true
   },
   "trainer": {
-    "num_epochs": 1000,
+    "num_epochs": 20,
     "validation_metric": "+exact_match",
-    "patience": 500,
+    "patience": 3,
     "cuda_device": cuda,
     "num_gradient_accumulation_steps": 16,
     "optimizer": {

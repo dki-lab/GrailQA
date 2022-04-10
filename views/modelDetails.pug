@@ -1,0 +1,20 @@
+#model_header
+    .form-group 
+        p Predictions by 
+            select(id="model_selector" name="model_selector" ng-model="$ctrl.model")
+                option(ng-repeat="(model, _) in $ctrl.models" value="{{model}}") {{ model }}
+#model_info
+    //- var model_info = predictions[model_name]
+    div
+        p Logical Form: 
+            pre {{ $ctrl.model_info().logical_form }}
+    div
+        p {{ $ctrl.model_info().answer.length > 1 ? "Answers" : "Answer" }}
+        ul.list-group.list-group-flush
+            li.list-group-item(ng-if="$ctrl.model_info().answer.length < 1")
+                i No Answer
+            li.list-group-item(ng-repeat="answer in $ctrl.model_info().answer.slice(0,5)")
+                samp {{answer}}
+            li.list-group-item(ng-if="$ctrl.model_info().answer.length > 5")
+                p.text-muted(ng-if="$ctrl.model_info().answer.length > 5") 
+                            i + {{ $ctrl.model_info().answer.length - 5 }} more predictions

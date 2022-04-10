@@ -89,73 +89,73 @@
         "submission_tag": "grailqa-submit"
     },
     "leaderboard": [
-        {
+	{
             "bundle": {
-                "args": "run evaluate.py:0x2d13989c17e44690ab62cc4edc0b900d test.json:0x2f0bdc8049964a1eb6edf14753d0b74d predict.json:0x636f72535657461b89fb57eb1f65e207 fb_roles:0x0ad46f557075407984c440c9ded502d3 fb_types:0x0277abdf23c049ba82507fd8bd45ad7b reverse_properties:0x4075d04609c1453a9939ae985d6fa5aa \"python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties\" --request-cpus 1 --request-memory 2g",
+                "args": "run evaluate.py:0x2d13989c17e44690ab62cc4edc0b900d test.json:0x2f0bdc8049964a1eb6edf14753d0b74d predict.json:0xf7295a6ead214a2e99e3a11602919fa7 fb_roles:0x0ad46f557075407984c440c9ded502d3 fb_types:0x0277abdf23c049ba82507fd8bd45ad7b reverse_properties:0x4075d04609c1453a9939ae985d6fa5aa \"python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties\" --request-cpus 1 --request-memory 2g",
                 "bundle_type": "run",
                 "command": "python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties",
-                "data_hash": "0xc58a358f4057ca4e22fa1c122b55f5742dda02e5",
+                "data_hash": "0xc9c15077614c254d986c87236e179de6fc79f16a",
                 "dependencies": [
                     {
                         "child_path": "evaluate.py",
-                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "child_uuid": "0x06b62e8995c84c74bf24a00c495ee047",
                         "parent_name": "evaluate.py",
                         "parent_path": "",
                         "parent_uuid": "0x2d13989c17e44690ab62cc4edc0b900d"
                     },
                     {
                         "child_path": "test.json",
-                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "child_uuid": "0x06b62e8995c84c74bf24a00c495ee047",
                         "parent_name": "grailqa_v1.0_test.json",
                         "parent_path": "",
                         "parent_uuid": "0x2f0bdc8049964a1eb6edf14753d0b74d"
                     },
                     {
                         "child_path": "predict.json",
-                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
-                        "parent_name": "xiye17-predictions-RnGKBQACor-predict",
+                        "child_uuid": "0x06b62e8995c84c74bf24a00c495ee047",
+                        "parent_name": "xiye17-predictions-RnGKBQAFull-predict",
                         "parent_path": "",
-                        "parent_uuid": "0x636f72535657461b89fb57eb1f65e207"
+                        "parent_uuid": "0xf7295a6ead214a2e99e3a11602919fa7"
                     },
                     {
                         "child_path": "fb_roles",
-                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "child_uuid": "0x06b62e8995c84c74bf24a00c495ee047",
                         "parent_name": "fb_roles",
                         "parent_path": "",
                         "parent_uuid": "0x0ad46f557075407984c440c9ded502d3"
                     },
                     {
                         "child_path": "fb_types",
-                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "child_uuid": "0x06b62e8995c84c74bf24a00c495ee047",
                         "parent_name": "fb_types",
                         "parent_path": "",
                         "parent_uuid": "0x0277abdf23c049ba82507fd8bd45ad7b"
                     },
                     {
                         "child_path": "reverse_properties",
-                        "child_uuid": "0x496846b601bc4dd1bf365e87f19d5548",
+                        "child_uuid": "0x06b62e8995c84c74bf24a00c495ee047",
                         "parent_name": "reverse_properties",
                         "parent_path": "",
                         "parent_uuid": "0x4075d04609c1453a9939ae985d6fa5aa"
                     }
                 ],
                 "frozen": null,
-                "id": "0x496846b601bc4dd1bf365e87f19d5548",
+                "id": "0x06b62e8995c84c74bf24a00c495ee047",
                 "is_anonymous": false,
                 "metadata": {
                     "actions": [],
                     "allow_failed_dependencies": false,
                     "cpu_usage": 0.0,
-                    "created": 1628287412,
-                    "data_size": 9993488,
-                    "description": "{\"submit_id\": \"0x34922290817d4b5b85e15a0a4c36c5e5\", \"submitter_id\": \"0x842675d614884976957187a0ad146e6b\", \"predict_id\": \"0x636f72535657461b89fb57eb1f65e207\"}",
+                    "created": 1629487541,
+                    "data_size": 10121708,
+                    "description": "{\"submit_id\": \"0x846a3364239c429da363c6d840353db7\", \"submitter_id\": \"0x842675d614884976957187a0ad146e6b\", \"predict_id\": \"0xf7295a6ead214a2e99e3a11602919fa7\"}",
                     "docker_image": "codalab/default-cpu@sha256:bd94f8ec0a670e052d196d4b1047e666bf5b9877b82ee6bcc98875a20b6b4ead",
                     "exclude_patterns": [],
                     "exitcode": 0,
-                    "last_updated": 1628287738,
+                    "last_updated": 1629488176,
                     "memory_usage": 0.0,
-                    "name": "xiye17-predictions-RnGKBQACor-results",
-                    "remote": "58e82518f0b6-67cbfa926c4244838875dfea6ae706b1",
+                    "name": "xiye17-predictions-RnGKBQAFull-results",
+                    "remote": "fa4d87c36602-2a25871d50d4401188b79e7dd5e69324",
                     "request_cpus": 1,
                     "request_disk": "",
                     "request_docker_image": "",
@@ -166,16 +166,16 @@
                     "request_queue": "",
                     "request_time": "",
                     "run_status": "Finished",
-                    "started": 1628287656,
+                    "started": 1629488060,
                     "tags": [
                         "dauqs-test-eval"
                     ],
-                    "time": 11.488053,
-                    "time_cleaning_up": 11.264952659606934,
-                    "time_preparing": 20.088744163513184,
-                    "time_running": 26.23998713493347,
+                    "time": 11.458848,
+                    "time_cleaning_up": 8.149924278259277,
+                    "time_preparing": 71.5313720703125,
+                    "time_running": 19.156721353530884,
                     "time_system": 0.0,
-                    "time_uploading_results": 22.42937397956848,
+                    "time_uploading_results": 16.308811902999878,
                     "time_user": 0.0
                 },
                 "owner": {
@@ -185,23 +185,138 @@
                 "permission": 2,
                 "permission_spec": "all",
                 "state": "ready",
-                "uuid": "0x496846b601bc4dd1bf365e87f19d5548"
+                "uuid": "0x06b62e8995c84c74bf24a00c495ee047"
             },
             "scores": {
-                "em": 0.6768195903559822,
-                "em_comp": 0.6311369509043928,
-                "em_zero": 0.6241175623109062,
-                "f1": 0.7316400407236384,
-                "f1_comp": 0.7001673209550585,
-                "f1_zero": 0.6858296111764944
+                "em": 0.6877787015342756,
+                "em_comp": 0.6379198966408268,
+                "em_zero": 0.6298804206886616,
+                "f1": 0.7442247568039024,
+                "f1_comp": 0.711559252076922,
+                "f1_zero": 0.6918197281690718
             },
             "submission": {
-                "created": 1628281235,
-                "description": "RnG-KBQA (single model) (Anonymous)",
+                "created": 1629442106,
+                "description": "RnG-KBQA (single model) (Salesforce Research)",
+                "num_period_submissions": 1,
+                "num_total_submissions": 2,
+                "public": true,
+                "user_name": "xiye17"
+            }
+        },
+        {
+            "bundle": {
+                "args": "run evaluate.py:0x2d13989c17e44690ab62cc4edc0b900d test.json:0x2f0bdc8049964a1eb6edf14753d0b74d predict.json:0x81e95d0af9ff4a2889d69833af2065cc fb_roles:0x0ad46f557075407984c440c9ded502d3 fb_types:0x0277abdf23c049ba82507fd8bd45ad7b reverse_properties:0x4075d04609c1453a9939ae985d6fa5aa \"python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties\" --request-cpus 1 --request-memory 2g",
+                "bundle_type": "run",
+                "command": "python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties",
+                "data_hash": "0xe537f32879a533395844070323f9645b3158ce0c",
+                "dependencies": [
+                    {
+                        "child_path": "evaluate.py",
+                        "child_uuid": "0x8a613d0ebc3848e89b2cfce104096c91",
+                        "parent_name": "evaluate.py",
+                        "parent_path": "",
+                        "parent_uuid": "0x2d13989c17e44690ab62cc4edc0b900d"
+                    },
+                    {
+                        "child_path": "test.json",
+                        "child_uuid": "0x8a613d0ebc3848e89b2cfce104096c91",
+                        "parent_name": "grailqa_v1.0_test.json",
+                        "parent_path": "",
+                        "parent_uuid": "0x2f0bdc8049964a1eb6edf14753d0b74d"
+                    },
+                    {
+                        "child_path": "predict.json",
+                        "child_uuid": "0x8a613d0ebc3848e89b2cfce104096c91",
+                        "parent_name": "DaoguangZan-predictions-S2QL-predict",
+                        "parent_path": "",
+                        "parent_uuid": "0x81e95d0af9ff4a2889d69833af2065cc"
+                    },
+                    {
+                        "child_path": "fb_roles",
+                        "child_uuid": "0x8a613d0ebc3848e89b2cfce104096c91",
+                        "parent_name": "fb_roles",
+                        "parent_path": "",
+                        "parent_uuid": "0x0ad46f557075407984c440c9ded502d3"
+                    },
+                    {
+                        "child_path": "fb_types",
+                        "child_uuid": "0x8a613d0ebc3848e89b2cfce104096c91",
+                        "parent_name": "fb_types",
+                        "parent_path": "",
+                        "parent_uuid": "0x0277abdf23c049ba82507fd8bd45ad7b"
+                    },
+                    {
+                        "child_path": "reverse_properties",
+                        "child_uuid": "0x8a613d0ebc3848e89b2cfce104096c91",
+                        "parent_name": "reverse_properties",
+                        "parent_path": "",
+                        "parent_uuid": "0x4075d04609c1453a9939ae985d6fa5aa"
+                    }
+                ],
+                "frozen": null,
+                "id": "0x8a613d0ebc3848e89b2cfce104096c91",
+                "is_anonymous": false,
+                "metadata": {
+                    "actions": [],
+                    "allow_failed_dependencies": false,
+                    "cpu_usage": 0.0,
+                    "created": 1628779054,
+                    "data_size": 30997257,
+                    "description": "{\"submit_id\": \"0x7a3cc2d112b94ed0908216f3d5519232\", \"submitter_id\": \"0x167481c96f9046a5a656de2c706016b7\", \"predict_id\": \"0x81e95d0af9ff4a2889d69833af2065cc\"}",
+                    "docker_image": "codalab/default-cpu@sha256:bd94f8ec0a670e052d196d4b1047e666bf5b9877b82ee6bcc98875a20b6b4ead",
+                    "exclude_patterns": [],
+                    "exitcode": 0,
+                    "last_updated": 1628779393,
+                    "memory_usage": 0.0,
+                    "name": "DaoguangZan-predictions-S2QL-results",
+                    "remote": "09ccef832549-d78b8893ea584a7382f4bad0b5d5355e",
+                    "request_cpus": 1,
+                    "request_disk": "",
+                    "request_docker_image": "",
+                    "request_gpus": 0,
+                    "request_memory": "2g",
+                    "request_network": false,
+                    "request_priority": 0,
+                    "request_queue": "",
+                    "request_time": "",
+                    "run_status": "Finished",
+                    "started": 1628779326,
+                    "tags": [
+                        "dauqs-test-eval"
+                    ],
+                    "time": 14.678238,
+                    "time_cleaning_up": 9.189903497695923,
+                    "time_preparing": 15.968858242034912,
+                    "time_running": 22.213124752044678,
+                    "time_system": 0.0,
+                    "time_uploading_results": 18.36358404159546,
+                    "time_user": 0.0
+                },
+                "owner": {
+                    "id": "0xb8f8738c221c44329f9d0ab9e4e00f3a",
+                    "type": "users"
+                },
+                "permission": 2,
+                "permission_spec": "all",
+                "state": "ready",
+                "uuid": "0x8a613d0ebc3848e89b2cfce104096c91"
+            },
+            "scores": {
+                "em": 0.574559746050941,
+                "em_comp": 0.5471576227390181,
+                "em_zero": 0.5512174038323008,
+                "f1": 0.6618590811236013,
+                "f1_comp": 0.646793726425745,
+                "f1_zero": 0.6359766312615067
+            },
+            "submission": {
+                "created": 1628778570,
+                "description": "S2QL (single model) (Anonymous)",
                 "num_period_submissions": 0,
                 "num_total_submissions": 1,
                 "public": true,
-                "user_name": "xiye17"
+                "user_name": "DaoguangZan"
             }
         },
         {
@@ -305,7 +420,7 @@
             },
             "submission": {
                 "created": 1617675783,
-                "description": "ReTraCk (single model) (Microsoft Research Asia)",
+                "description": "ReTraCk (single model) (Microsoft Research Asia) https://aclanthology.org/2021.acl-demo.39/",
                 "num_period_submissions": 1,
                 "num_total_submissions": 2,
                 "public": true,
@@ -314,68 +429,71 @@
         },
         {
             "bundle": {
-                "args": "run evaluate.py:0x2d13989c17e44690ab62cc4edc0b900d test.json:0x2f0bdc8049964a1eb6edf14753d0b74d predict.json:0x5e805468278f47e9a75fca3d3c303d34 fb_roles:0x0ad46f557075407984c440c9ded502d3 fb_types:0x0277abdf23c049ba82507fd8bd45ad7b reverse_properties:0x4075d04609c1453a9939ae985d6fa5aa \"python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties\" --request-cpus 1 --request-memory 2g",
+                "args": "run evaluate.py:0x2d13989c17e44690ab62cc4edc0b900d test.json:0x2f0bdc8049964a1eb6edf14753d0b74d predict.json:0xaab59e2c18394c489e866bd8fb4e3b59 fb_roles:0x0ad46f557075407984c440c9ded502d3 fb_types:0x0277abdf23c049ba82507fd8bd45ad7b reverse_properties:0x4075d04609c1453a9939ae985d6fa5aa \"python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties\" --request-cpus 1 --request-memory 2g",
                 "bundle_type": "run",
                 "command": "python3 evaluate.py test.json predict.json --fb_roles fb_roles --fb_types fb_types --reverse_properties reverse_properties",
-                "data_hash": "0x76e523a88bbee31065305745b8f4e881a51bbef4",
+                "data_hash": "0x3655e904e5607cd71a281715abadfade0122e40a",
                 "dependencies": [
                     {
                         "child_path": "evaluate.py",
-                        "child_uuid": "0x9bc697eed3024464b1c01717ff3e0195",
+                        "child_uuid": "0x0b76a1e27b034811bdd3ddcf8b151a31",
                         "parent_name": "evaluate.py",
                         "parent_path": "",
                         "parent_uuid": "0x2d13989c17e44690ab62cc4edc0b900d"
                     },
                     {
                         "child_path": "test.json",
-                        "child_uuid": "0x9bc697eed3024464b1c01717ff3e0195",
+                        "child_uuid": "0x0b76a1e27b034811bdd3ddcf8b151a31",
                         "parent_name": "grailqa_v1.0_test.json",
                         "parent_path": "",
                         "parent_uuid": "0x2f0bdc8049964a1eb6edf14753d0b74d"
                     },
                     {
                         "child_path": "predict.json",
-                        "child_uuid": "0x9bc697eed3024464b1c01717ff3e0195",
-                        "parent_name": "YuGu-predictions-ArcaneQA-predict",
+                        "child_uuid": "0x0b76a1e27b034811bdd3ddcf8b151a31",
+                        "parent_name": "YuGu-predictions-ArcaneQAnew-predict",
                         "parent_path": "",
-                        "parent_uuid": "0x5e805468278f47e9a75fca3d3c303d34"
+                        "parent_uuid": "0xaab59e2c18394c489e866bd8fb4e3b59"
                     },
                     {
                         "child_path": "fb_roles",
-                        "child_uuid": "0x9bc697eed3024464b1c01717ff3e0195",
+                        "child_uuid": "0x0b76a1e27b034811bdd3ddcf8b151a31",
                         "parent_name": "fb_roles",
                         "parent_path": "",
                         "parent_uuid": "0x0ad46f557075407984c440c9ded502d3"
                     },
                     {
                         "child_path": "fb_types",
-                        "child_uuid": "0x9bc697eed3024464b1c01717ff3e0195",
+                        "child_uuid": "0x0b76a1e27b034811bdd3ddcf8b151a31",
                         "parent_name": "fb_types",
                         "parent_path": "",
                         "parent_uuid": "0x0277abdf23c049ba82507fd8bd45ad7b"
                     },
                     {
                         "child_path": "reverse_properties",
-                        "child_uuid": "0x9bc697eed3024464b1c01717ff3e0195",
+                        "child_uuid": "0x0b76a1e27b034811bdd3ddcf8b151a31",
                         "parent_name": "reverse_properties",
                         "parent_path": "",
                         "parent_uuid": "0x4075d04609c1453a9939ae985d6fa5aa"
                     }
                 ],
-                "id": "0x9bc697eed3024464b1c01717ff3e0195",
+                "frozen": null,
+                "id": "0x0b76a1e27b034811bdd3ddcf8b151a31",
                 "is_anonymous": false,
                 "metadata": {
                     "actions": [],
                     "allow_failed_dependencies": false,
-                    "created": 1612497476,
-                    "data_size": 48176432,
-                    "description": "{\"submit_id\": \"0x0a842e746f7b497da390dfa1e1fa9049\", \"submitter_id\": \"0xb8f8738c221c44329f9d0ab9e4e00f3a\", \"predict_id\": \"0x5e805468278f47e9a75fca3d3c303d34\"}",
-                    "docker_image": "codalab/default-cpu@sha256:ff7de716ac5f94d9b4ff8d6341d60166ed5b0163cc05d8d51da9418511caf5e1",
+                    "cpu_usage": 0.0,
+                    "created": 1649602873,
+                    "data_size": 22930351,
+                    "description": "{\"submit_id\": \"0x582b6d417831400092eade118db00b6d\", \"submitter_id\": \"0xb8f8738c221c44329f9d0ab9e4e00f3a\", \"predict_id\": \"0xaab59e2c18394c489e866bd8fb4e3b59\"}",
+                    "docker_image": "codalab/default-cpu@sha256:d7c1ad8a8f660411ee00df2f1650078ba3470d8992522a773277c36789884a60",
                     "exclude_patterns": [],
                     "exitcode": 0,
-                    "last_updated": 1612497908,
-                    "name": "YuGu-predictions-ArcaneQA-results",
-                    "remote": "f3d0ef13ed6a-1e8dfb30440b468da217964076b0d68a",
+                    "last_updated": 1649603113,
+                    "memory_usage": 0.0,
+                    "name": "YuGu-predictions-ArcaneQAnew-results",
+                    "remote": "41571ce306d5-a72f15bc2dd348339f8890032a8e0ce0",
                     "request_cpus": 1,
                     "request_disk": "",
                     "request_docker_image": "",
@@ -386,12 +504,17 @@
                     "request_queue": "",
                     "request_time": "",
                     "run_status": "Finished",
-                    "started": 1612497704,
+                    "started": 1649603072,
+                    "store": "",
                     "tags": [
                         "dauqs-test-eval"
                     ],
-                    "time": 13.563651,
+                    "time": 12.413045,
+                    "time_cleaning_up": 1.0523111820220947,
+                    "time_preparing": 9.840287685394287,
+                    "time_running": 19.43017888069153,
                     "time_system": 0.0,
+                    "time_uploading_results": 10.187432527542114,
                     "time_user": 0.0
                 },
                 "owner": {
@@ -401,21 +524,21 @@
                 "permission": 2,
                 "permission_spec": "all",
                 "state": "ready",
-                "uuid": "0x9bc697eed3024464b1c01717ff3e0195"
+                "uuid": "0x0b76a1e27b034811bdd3ddcf8b151a31"
             },
             "scores": {
-                "em": 0.5787166502909833,
-                "em_comp": 0.563953488372093,
-                "em_zero": 0.4996398213513903,
-                "f1": 0.6492355914101564,
-                "f1_comp": 0.635332336739338,
-                "f1_zero": 0.5884371700952346
+                "em": 0.6289774015569496,
+                "em_comp": 0.6550387596899225,
+                "em_zero": 0.5206742544301973,
+                "f1": 0.7316487220066504,
+                "f1_comp": 0.7539773338248764,
+                "f1_zero": 0.6560456192833978
             },
             "submission": {
-                "created": 1612497262,
+                "created": 1649600429,
                 "description": "ArcaneQA (single model) (Anonymous)",
-                "num_period_submissions": 0,
-                "num_total_submissions": 5,
+                "num_period_submissions": 1,
+                "num_total_submissions": 6,
                 "public": true,
                 "user_name": "YuGu"
             }

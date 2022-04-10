@@ -1,0 +1,9 @@
+This runs the server of our leaderboard for GrailQA.
+
+Once we get a new submission, run: cl-competitiond -v grailqa.yml output.json
+, by which the submission can be evaluated.
+After several seconds, run the above command again to retrive the metrics.
+
+Then we will get an updated output.json, replace this new file with the old
+ one under GrailQA-explorer (i.e., run cp output.json ../GrailQA-explorer),
+and recompile it to update the webpage content.

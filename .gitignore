@@ -1,0 +1,11 @@
+node_modules/
+SQuAD-explorer/
+.publish/
+bower_components/
+*.DS_Store
+
+development.json
+
+saved.html
+
+results*.json

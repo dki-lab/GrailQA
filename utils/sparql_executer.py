@@ -5,7 +5,7 @@ import urllib
 from pathlib import Path
 from tqdm import tqdm
 
-sparql = SPARQLWrapper("http://cse-cnc238814s.cse.ohio-state.edu:3093/sparql")
+sparql = SPARQLWrapper("http://localhost:4242/sparql")
 sparql.setReturnFormat(JSON)
 
 path = str(Path(__file__).parent.absolute())
@@ -21,9 +21,12 @@ for line in contents:
 
 def execute_query(query: str) -> List[str]:
     sparql.setQuery(query)
+    print('query')
+    print(query)
     try:
         results = sparql.query().convert()
-    except urllib.error.URLError:
+    except urllib.error.URLError as e:
+        print(e)
         print(query)
         exit(0)
     rtn = []

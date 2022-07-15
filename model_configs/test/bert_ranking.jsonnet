@@ -88,7 +88,7 @@ local offline = true;
     "num_epochs": 20,
     "validation_metric": "+exact_match",
     "patience": 3,
-    "cuda_device": 1,
+    "cuda_device": -1,
     "num_gradient_accumulation_steps": 16,
     "optimizer": {
       "type": "adam",

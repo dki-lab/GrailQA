@@ -212,7 +212,9 @@ class Bert_Constrained_SimpleSeq2Seq(Model):
         """
 
         # torch.autograd.set_detect_anomaly(True)  # this option makes training slower
-
+        #print('this is the forward function')
+        #print(source_tokens)
+        #print(target_tokens)
         # self._vocab_size = constrained_vocab['tokens'].shape[1]
         batch_size = len(constrained_vocab)
         self._vocab_size = 0
@@ -360,6 +362,7 @@ class Bert_Constrained_SimpleSeq2Seq(Model):
             max_len = source_tokens["bert"].shape[2]
             source_tokens["bert"] = source_tokens["bert"].reshape(batch_size * num_seq, -1)
             if self.training:
+                
                 return self._source_embedder(source_tokens).reshape(batch_size, num_seq, max_len, -1)
             else:
                 bert_embeddings = []
@@ -964,6 +967,9 @@ class Bert_Constrained_SimpleSeq2Seq(Model):
                                   schema_start: List[List[int]],
                                   schema_end: List[List[int]],
                                   bert_embeddings: torch.Tensor) -> torch.Tensor:
+
+        #print('schema start')
+        #print(schema_start)
         batch_size = len(schema_start)
         target_embedding = bert_embeddings.new_zeros([batch_size, self._vocab_size, 768])
         for i in range(batch_size):
@@ -1123,6 +1129,7 @@ class Bert_Constrained_SimpleSeq2Seq(Model):
             denotation = []
             try:
                 sparql_query = lisp_to_sparql(predicted_lf)
+                #print('calling the sparql executor function')
                 denotation.extend(execute_query(sparql_query))
             except Exception:
                 pass

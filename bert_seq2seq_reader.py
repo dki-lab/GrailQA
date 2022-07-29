@@ -166,7 +166,9 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                             literals.add(node['id'])
                 else:
                     # entity_map = self.linker.get_entities(item['question'])
-                    entity_map = self.el_results[item['qid']]['entities']
+                    #print(type(item['qid']))
+                    #raise AttributeError
+                    entity_map = self.el_results[str(item['qid'])]['entities']
                     entities = set(entity_map.keys())
                     for k in entity_map:
                         v = entity_map[k]['friendly_name']
@@ -222,6 +224,16 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                          entity_map: Dict,
                          literals: Set,
                          logical_forms: List = None) -> Instance:  # type: ignore
+        """
+        This function takes the dictionary entity map as input and returns an AllenNLP Instance object that has the prepared sets of tokens to be fed to BERT, I think. Vocab item finding handled with 
+        get_constrained_vocab function
+        """
+        
+        print('SAVE VALUE: item')
+        print(item)
+        print('SAVE VALLUE: Entity map')
+        print(entity_map)
+
         qid = MetadataField(item['qid'])
         if item['qid'] in [2102902009000]:   # will exceed maximum length constraint
             return None
@@ -259,6 +271,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
 
             constrained_vocab = list(vocab)
         else:
+            #print('entity map length')
+            #print(len(entity_map))
             vocab = set()
             vocab.update(self._schema_constants)
             for eid in entity_map:
@@ -267,8 +281,16 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             for l in literals:
                 vocab.add(l)
 
-            constrained_vocab = list(vocab)
+            #print('literals')
+            #print(literals)
+            #print('vocab')
+            #print(vocab)
+            #print('example of case with no entities')
+            #raise AssertionError
 
+            constrained_vocab = list(vocab)
+        print('SAVE VALUE: Raw vocabulary')
+        print(constrained_vocab)
         # schema_constants = constrained_vocab[:]
         # always fix the position of END_SYMBOL, START_SYMBOL in each constrained vocab,
         # because a consistent global shared end_index / start_index is needed by BeamSearch
@@ -292,10 +314,16 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                 if constant == '.':  # '.' in sparql means and
                     constant = 'and'
                 concat_strings[i] += ' '.join(re.split('\.|_', constant.lower())) + self._delimiter
+       # print('concat strings')
+       # print(len(concat_strings))
+       # print(concat_strings)
         # handle sequence of length > 512 (dividing the schema constants into num_constants_per_group every group)
         # _source_tokenizer.tokenize will append the head [CLS] and ending [SEP] by itself
         tokenized_sources = [self._source_tokenizer.tokenize(item['question'] + '[SEP]' + concat_string)
                              for concat_string in concat_strings]
+
+        print('SAVE VALUE: Tokenized vocab')
+        print(tokenized_sources)
 
         end = []
         start = []
@@ -330,6 +358,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                 print(len(chunk), item['qid'], '!!!!!!!!!')
                 exit(-1)
             source_field.append(chunk)
+            #print('source_field')
+            #print(source_field)
         source_field = ListField(source_field)
 
         # vocab_field = TextField([Token(x) for x in constrained_vocab], self._target_token_indexers)
@@ -374,6 +404,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         if target_string is not None:
             target_field = self._convert_target_to_indices(target_string, constrained_vocab, vocab_field)
             instance_dict["target_tokens"] = target_field  # The id of each target token in constrained_vocab
+        
+        #print(instance_dict.keys())
 
         return Instance(instance_dict)
 
@@ -390,7 +422,9 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
 
         converted_target.append(constrained_vocab.index(END_SYMBOL))
         converted_target.insert(0, constrained_vocab.index(START_SYMBOL))
-
+        
+        print('converted_target')
+        print(converted_target)
         targets = []
         for t in converted_target:
             targets.append(IndexField(t, vocab_field))
@@ -412,10 +446,19 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                                s_expression=None,
                                domains=None):
         '''
+        This function assembles a list of schema 'vocabulary' items that are within self._constrained_vocab steps of the entities in entity map. I believe entity map is a dictionary of entities identified by the entity linker
+        and the vocab list is assembled from the files of 2step relations. 
+
         :param item:
         :param constrained_vocab:
         :return: Here this method only returns schema constants but not syntactic constants like AND, JOIN,...
         '''
+
+        ## BP messing with this
+        #print(self._constrained_vocab)
+        #print('entity map')
+        #print(type(entity_map))
+        #print(entity_map)
         if self._constrained_vocab in ['1_step', '2_step']:
             # vocab = {'(', ')', 'JOIN', 'AND', 'R', 'ARGMAX', 'ARGMIN', 'COUNT', 'ge', 'gt', 'le', 'lt'}
             vocab = set()
@@ -467,6 +510,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         for syntax_constant in self._global_syntax_constants_vocab:
             if syntax_constant in vocab:
                 vocab.remove(syntax_constant)
-
+        #print('constrained vocab')
+        #print(type(vocab))
+        #print(vocab)
         return vocab
 

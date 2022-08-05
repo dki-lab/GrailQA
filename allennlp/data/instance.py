@@ -69,6 +69,9 @@ class Instance(Mapping[str, Field]):
         if not self.indexed:
             self.indexed = True
             for field in self.fields.values():
+                print('vocab type: ', type(vocab))
+                print('field type: ', type(field))
+                #print(vocab.self.values())
                 field.index(vocab)
 
     def get_padding_lengths(self) -> Dict[str, Dict[str, int]]:

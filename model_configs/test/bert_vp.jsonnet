@@ -1,5 +1,5 @@
 local ranking = false;
-local num_constants_per_group = 45;
+local num_constants_per_group = 10;
 local offline = true;
 {
   "dataset_reader":{

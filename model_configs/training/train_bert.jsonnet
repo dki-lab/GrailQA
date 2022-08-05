@@ -2,8 +2,8 @@ local ranking = false;
 local num_constants_per_group = 45;
 local offline = true;
 local gq1 = false;
-local cuda = 1;
-local use_sparql = false;
+local cuda = -1;
+local use_sparql = true;
 {
   "dataset_reader":{
     "type":"bert_seq2seq",

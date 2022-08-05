@@ -1126,18 +1126,18 @@ class Bert_Constrained_SimpleSeq2Seq(Model):
                 indices = indices[0]
             predicted_lf = self._get_logical_form(indices, constrained)
 
-            denotation = []
-            try:
-                sparql_query = lisp_to_sparql(predicted_lf)
-                #print('calling the sparql executor function')
-                denotation.extend(execute_query(sparql_query))
-            except Exception:
-                pass
-            all_predicted_answers.append(denotation)
+            #denotation = []
+            #try:
+            #    sparql_query = lisp_to_sparql(predicted_lf)
+            #    #print('calling the sparql executor function')
+            #    denotation.extend(execute_query(sparql_query))
+            #except Exception:
+            #    pass
+            #all_predicted_answers.append(denotation)
             all_predicted_lfs.append(predicted_lf)
 
         rtn = {}
         rtn['qid'] = ids
         rtn['logical_form'] = all_predicted_lfs
-        rtn['answer'] = all_predicted_answers
+        #rtn['answer'] = all_predicted_answers
         return rtn

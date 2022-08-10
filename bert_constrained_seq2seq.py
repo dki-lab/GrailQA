@@ -216,6 +216,10 @@ class Bert_Constrained_SimpleSeq2Seq(Model):
         #print(source_tokens)
         #print(target_tokens)
         # self._vocab_size = constrained_vocab['tokens'].shape[1]
+        print('##########################')
+        print('target tokens')
+        print(target_tokens)
+        print('$$$$$$$$$$$$$$$$$$$$$$$$')
         batch_size = len(constrained_vocab)
         self._vocab_size = 0
         for c_v in constrained_vocab:

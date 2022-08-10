@@ -1,3 +1,4 @@
+
 # %%
 import re
 from typing import Dict, Optional, List, Set
@@ -49,7 +50,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             ranking_mode: bool = False,
             perfect_entity_linking: bool = True,
             source_max_tokens=512,
-            num_constants_per_group=45,
+            num_constants_per_group=30,
             delimiter=";",
             gq1=False,
             use_sparql=False  # whether to use sparql as target logical form. Using S-expression by default
@@ -106,79 +107,82 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
 
     @overrides
     def _read(self, file_path: str):
-        if self._ranking_mode:
-            with open('ontology/domain_info', 'r') as f:
-                self._constants_to_domain = defaultdict(lambda: None)
-                self._constants_to_domain.update(json.load(f))
+        #if self._ranking_mode:
+        #    with open('ontology/domain_info', 'r') as f:
+        #        self._constants_to_domain = defaultdict(lambda: None)
+        #        self._constants_to_domain.update(json.load(f))
 
         if self._gq1:
             suffix = "_gq1"
         else:
             suffix = ""
-        if self._use_constrained_vocab:
-            if self._constrained_vocab == '1_step':
-                with open(f'cache/1hop_vocab{suffix}', 'r') as f:
-                    self._vocab_info = json.load(f)
+        #if self._use_constrained_vocab:
+        #    if self._constrained_vocab == '1_step':
+        #        with open(f'cache/1hop_vocab{suffix}', 'r') as f:
+        #            self._vocab_info = json.load(f)###
 
-            if self._constrained_vocab == '2_step':
-                with open(f'cache/2hop_vocab{suffix}', 'r') as f:
-                    self._vocab_info = json.load(f)
+        #    if self._constrained_vocab == '2_step':
+        #        with open(f'cache/2hop_vocab{suffix}', 'r') as f:
+        #            self._vocab_info = json.load(f)
 
-            if self._constrained_vocab == 'domain':
-                with open('ontology/domain_dict', 'r') as f:
-                    self._domain_dict = json.load(f)
-                with open('ontology/domain_info', 'r') as f:
-                    self._constants_to_domain = defaultdict(lambda: None)
-                    self._constants_to_domain.update(json.load(f))
+        #    if self._constrained_vocab == 'domain':
+        #        with open('ontology/domain_dict', 'r') as f:
+        #            self._domain_dict = json.load(f)
+        #        with open('ontology/domain_info', 'r') as f:
+        #            self._constants_to_domain = defaultdict(lambda: None)
+        #            self._constants_to_domain.update(json.load(f))
 
-            if self._constrained_vocab in ['mix1', 'mix2']:
-                if self._constrained_vocab == 'mix1':
-                    with open(f'cache/1hop_vocab{suffix}', 'r') as f:
-                        self._vocab_info = json.load(f)
-                elif self._constrained_vocab == 'mix2':
-                    with open(f'cache/2hop_vocab{suffix}', 'r') as f:
-                        self._vocab_info = json.load(f)
-                with open('ontology/domain_dict', 'r') as f:
-                    self._domain_dict = json.load(f)
-                with open('ontology/domain_info', 'r') as f:
-                    self._constants_to_domain = defaultdict(lambda: None)
-                    self._constants_to_domain.update(json.load(f))
+        #    if self._constrained_vocab in ['mix1', 'mix2']:
+        #        if self._constrained_vocab == 'mix1':
+        #            with open(f'cache/1hop_vocab{suffix}', 'r') as f:
+        #                self._vocab_info = json.load(f)
+        #        elif self._constrained_vocab == 'mix2':
+        #            with open(f'cache/2hop_vocab{suffix}', 'r') as f:
+        #                self._vocab_info = json.load(f)
+        #        with open('ontology/domain_dict', 'r') as f:
+        #            self._domain_dict = json.load(f)
+        #        with open('ontology/domain_info', 'r') as f:
+        #            self._constants_to_domain = defaultdict(lambda: None)
+        #            self._constants_to_domain.update(json.load(f))
 
         # if not self._training:
-        with open('ontology/domain_info', 'r') as f:
-            self._schema_constants = set(json.load(f).keys())
+        #with open('ontology/domain_info', 'r') as f:
+        #    self._schema_constants = set(json.load(f).keys())
 
         with open(cached_path(file_path), 'r') as data_file:
             logger.info("Reading instances from lines in file at: %s", file_path)
             file_contents = json.load(data_file)
             for item in file_contents:
-                if self._perfect_el:
-                    entities = set()
-                    entity_map = {}
-                    for node in item['graph_query']['nodes']:
-                        if node['node_type'] == 'entity':
-                            entities.add(node['id'])
-                            entity_map[node['id']] = ' '.join(
-                                node['friendly_name'].replace(self._delimiter, ' ').split()[:5])
-                    literals = set()
-                    for node in item['graph_query']['nodes']:
-                        if node['node_type'] == 'literal' and node['function'] not in ['argmin', 'argmax']:
-                            literals.add(node['id'])
-                else:
+                #if self._perfect_el:
+                #    entities = set()
+                #    entity_map = {}
+                #    for node in item['graph_query']['nodes']:
+                #        if node['node_type'] == 'entity':
+                #            entities.add(node['id'])
+                ##            entity_map[node['id']] = ' '.join(
+                 #               node['friendly_name'].replace(self._delimiter, ' ').split()[:5])
+                #    literals = set()
+                #    for node in item['graph_query']['nodes']:
+                #        if node['node_type'] == 'literal' and node['function'] not in ['argmin', 'argmax']:
+                #            literals.add(node['id'])
+                #else:
                     # entity_map = self.linker.get_entities(item['question'])
                     #print(type(item['qid']))
                     #raise AttributeError
-                    entity_map = self.el_results[str(item['qid'])]['entities']
-                    entities = set(entity_map.keys())
-                    for k in entity_map:
-                        v = entity_map[k]['friendly_name']
-                        entity_map[k] = ' '.join(v.replace(self._delimiter, ' ').split()[:5])
-                    # print("linked entities:", entities)
-                    literals = set()
-                    mentions = self.extractor.detect_mentions(item['question'])
-                    for m in mentions:
-                        literals.add(self.extractor.process_literal(m))
+                 #   entity_map = self.el_results[str(item['qid'])]['entities']
+                 #   entities = set(entity_map.keys())
+                 #   for k in entity_map:
+                 #       v = entity_map[k]['friendly_name']
+                 #       entity_map[k] = ' '.join(v.replace(self._delimiter, ' ').split()[:5])
+                 #   # print("linked entities:", entities)
+                 #   literals = set()
+                 #   mentions = self.extractor.detect_mentions(item['question'])
+                 #   for m in mentions:
+                 #       literals.add(self.extractor.process_literal(m))
                 if not self._ranking_mode:
+                    #dummies for smoke testing
+                    entity_map = []
+                    literals = []
                     instance = self.text_to_instance(item, entity_map, literals)
                 else:
                     # domains = set()
@@ -187,35 +191,36 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                     #         domains.add(self._constants_to_domain[edge['relation']])
 
                     logical_forms = []
-                    if len(entities) > 0:
-                        if self._perfect_el:
-                            # logical_forms = generate_all_logical_forms_alpha(list(entities), list(domains), offline=False)
-                            logical_forms.extend(generate_all_logical_forms_alpha(list(entities)[0],
-                                                                                  offline=self._offline))  # use no domain info
-                            lfs_2 = generate_all_logical_forms_2(list(entities)[0], offline=self._offline)
-                            if len(lfs_2) < 10000 or not self._gq1:
-                                logical_forms.extend(lfs_2)
-                            # logical_forms.extend(
-                            # generate_all_logcial_forms_2_with_domain(list(entities)[0], list(domains)[0], offline=False))
-                            # logical_forms = generate_all_logcial_forms_2_with_domain(list(entities)[0], list(domains)[0])
-                            # logical_forms = generate_all_logical_forms_2(list(entities)[0])
-                        else:
-                            for entity in entities:
-                                logical_forms.extend(generate_all_logical_forms_alpha(entity, offline=self._offline))
-                                lfs_2 = generate_all_logical_forms_2(list(entities)[0], offline=self._offline)
-                                if len(lfs_2) < 10000 or not self._gq1:
-                                    logical_forms.extend(lfs_2)
+                    #if len(entities) > 0:
+                    #    if self._perfect_el:
+                    #        # logical_forms = generate_all_logical_forms_alpha(list(entities), list(domains), offline=False)
+                    #        logical_forms.extend(generate_all_logical_forms_alpha(list(entities)[0],
+                    #                                                              offline=self._offline))  # use no domain info
+                    #        lfs_2 = generate_all_logical_forms_2(list(entities)[0], offline=self._offline)
+                    #        if len(lfs_2) < 10000 or not self._gq1:
+                    #            logical_forms.extend(lfs_2)
+                    #        # logical_forms.extend(
+                    #        # generate_all_logcial_forms_2_with_domain(list(entities)[0], list(domains)[0], offline=False))
+                    #        # logical_forms = generate_all_logcial_forms_2_with_domain(list(entities)[0], list(domains)[0])
+                    #        # logical_forms = generate_all_logical_forms_2(list(entities)[0])
+                    #    else:
+                    ##        for entity in entities:
+                     #           logical_forms.extend(generate_all_logical_forms_alpha(entity, offline=self._offline))
+                     #           lfs_2 = generate_all_logical_forms_2(list(entities)[0], offline=self._offline)
+                     #           if len(lfs_2) < 10000 or not self._gq1:
+                     #               logical_forms.extend(lfs_2)
 
-                    for literal in literals:
-                        logical_forms.extend(
-                            generate_all_logical_forms_for_literal(literal))
+                    #for literal in literals:
+                    #    logical_forms.extend(
+                    #        generate_all_logical_forms_for_literal(literal))
 
-                    if len(logical_forms) == 0:
-                        continue
+                    #if len(logical_forms) == 0:
+                    #    continue
 
                     # print(len(logical_forms))
-                    instance = self.text_to_instance(item, entity_map, literals, logical_forms)
+                    #instance = self.text_to_instance(item, entity_map, literals, logical_forms)
                 if instance:
+                    print('yielding instance')
                     yield instance
 
     @overrides
@@ -229,57 +234,65 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         get_constrained_vocab function
         """
         
-        print('SAVE VALUE: item')
-        print(item)
-        print('SAVE VALLUE: Entity map')
-        print(entity_map)
+        ##print('SAVE VALUE: item')
+        #print(item)
+        #print('SAVE VALLUE: Entity map')
+        #print(entity_map)
 
-        qid = MetadataField(item['qid'])
-        if item['qid'] in [2102902009000]:   # will exceed maximum length constraint
-            return None
+        qid = item['qid']
 
-        if not self._use_sparql:
-            if 's_expression' in item:
-                target_string = item['s_expression']
-            else:
-                target_string = None
-        else:
-            if 'sparql_query' in item:
-                target_string = item['sparql_query']
-            else:
-                target_string = None
-        item['question'] = item['question'].replace(self._delimiter, ' ')
-        # if self._training:
-        if self._use_constrained_vocab and len(entity_map) > 0:
-            if not self._training:
-                constrained_vocab = self._get_constrained_vocab(entity_map, literals)
-            else:
-                logical_form = item['s_expression'] if not self._use_sparql else item['sparql_query']
-                domains = item['domains'] if not self._gq1 else None
-                constrained_vocab = self._get_constrained_vocab(entity_map, literals, s_expression=logical_form,
-                                                                domains=domains)
-        elif len(entity_map) == 0 and self._training:
-            vocab = set()
-            vocab.update(self._schema_constants)
-            vocab = list(vocab)
-            random.shuffle(vocab)
-            vocab = set(vocab[:200])
-            if not self._use_sparql:
-                vocab.update([x for x in self._target_tokenizer(item['s_expression'])])
-            else:
-                vocab.update([x for x in self._target_tokenizer(item['sparql_query'])])
+        with open('cache/extended_smoketest_vocab.json', 'r') as file:
+            vocab_dict = json.load(file)
 
-            constrained_vocab = list(vocab)
-        else:
-            #print('entity map length')
-            #print(len(entity_map))
-            vocab = set()
-            vocab.update(self._schema_constants)
-            for eid in entity_map:
-                vocab.add(eid)
+        constrained_vocab = vocab_dict[qid]
+        
+        target_string = None
+        qid = MetadataField(qid)
+        #if item['qid'] in [2102902009000]:   # will exceed maximum length constraint
+        #    return None
 
-            for l in literals:
-                vocab.add(l)
+        #if not self._use_sparql:
+        #    if 's_expression' in item:
+        #        target_string = item['s_expression']
+        #    else:
+        #        target_string = None
+        #else:
+        #    if 'sparql_query' in item:
+        #        target_string = item['sparql_query']
+        #    else:
+        #        target_string = None
+        #item['question'] = item['question'].replace(self._delimiter, ' ')
+        ## if self._training:
+        #if self._use_constrained_vocab and len(entity_map) > 0:
+        #    if not self._training:
+        #        constrained_vocab = self._get_constrained_vocab(entity_map, literals)
+        #    else:
+        #        logical_form = item['s_expression'] if not self._use_sparql else item['sparql_query']
+        #        domains = item['domains'] if not self._gq1 else None
+        #        constrained_vocab = self._get_constrained_vocab(entity_map, literals, s_expression=logical_form,
+        #                                                        domains=domains)
+        #elif len(entity_map) == 0 and self._training:
+        #    vocab = set()
+        #    vocab.update(self._schema_constants)
+        #    vocab = list(vocab)
+        #    random.shuffle(vocab)
+        #    vocab = set(vocab[:200])
+        #    if not self._use_sparql:
+        #        vocab.update([x for x in self._target_tokenizer(item['s_expression'])])
+        #    else:
+        #        vocab.update([x for x in self._target_tokenizer(item['sparql_query'])])
+
+
+        #else:
+        #    #print('entity map length')
+        #    #print(len(entity_map))
+        #    vocab = set()
+        #    vocab.update(self._schema_constants)
+        #    for eid in entity_map:
+        #        vocab.add(eid)#
+
+         #   for l in literals:
+         #       vocab.add(l)
 
             #print('literals')
             #print(literals)
@@ -288,7 +301,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             #print('example of case with no entities')
             #raise AssertionError
 
-            constrained_vocab = list(vocab)
+            #constrained_vocab = list(vocab)
         print('SAVE VALUE: Raw vocabulary')
         print(constrained_vocab)
         # schema_constants = constrained_vocab[:]
@@ -309,8 +322,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             else:
                 right_index = len(schema_constants)
             for constant in schema_constants[i * self._num_constants_per_group: right_index]:
-                if constant in entity_map:  # to get the representation for a entity based on its friendly name
-                    constant = entity_map[constant]
+                #if constant in entity_map:  # to get the representation for a entity based on its friendly name
+                #    constant = entity_map[constant]
                 if constant == '.':  # '.' in sparql means and
                     constant = 'and'
                 concat_strings[i] += ' '.join(re.split('\.|_', constant.lower())) + self._delimiter

@@ -71,11 +71,17 @@ class Instance(Mapping[str, Field]):
             for field in self.fields.values():
                 print('vocab type: ', type(vocab))
                 print('field type: ', type(field))
+                #print('field')
+                #try:
+                #    print(field.metadata)
+                #except:
+                #    pass
+                #print('###########################')
                 #print(vocab.self.values())
-                try:
-                    field.index(vocab)
-                except:
-                    print('field: ', field)
+                #try:
+                field.index(vocab)
+                #except:
+                #    print('field: ', field)
 
 
     def get_padding_lengths(self) -> Dict[str, Dict[str, int]]:

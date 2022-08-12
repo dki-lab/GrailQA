@@ -22,6 +22,7 @@ from allennlp.nn import util
 from allennlp.training.metrics import Average
 from allennlp.nn.beam_search import BeamSearch
 from allennlp.training import trainer
+import pickle
 
 
 @Model.register("bert_cons_simple_seq2seq")
@@ -1120,8 +1121,15 @@ class Bert_Constrained_SimpleSeq2Seq(Model):
         corresponding tokens, and adds a field called ``predicted_tokens`` to the ``output_dict``.
         """
         predicted_indices = output_dict["predictions"]
+        print('predicted_indices: ############')
+        print(predicted_indices)
+    
         constrained_vocab = output_dict["constrained_vocab"]
+        print(constrained_vocab)
         ids = output_dict['ids']
+
+        with open('output_vocab.pkl', 'wb') as file:
+            pickle.dump(constrained_vocab, file)
 
         all_predicted_lfs = []
         all_predicted_answers = []

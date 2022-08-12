@@ -241,7 +241,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
 
         qid = item['qid']
 
-        with open('cache/extended_smoketest_vocab.json', 'r') as file:
+        with open('cache/extended_smoketest_singleparent_vocab.json', 'r') as file:
             vocab_dict = json.load(file)
 
         constrained_vocab = vocab_dict[qid]

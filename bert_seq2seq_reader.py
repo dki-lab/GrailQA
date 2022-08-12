@@ -22,6 +22,7 @@ from entity_linking.value_extractor import GrailQA_Value_Extractor
 from utils.search_over_graphs import generate_all_logical_forms_alpha, generate_all_logical_forms_2, \
     get_vocab_info_online, generate_all_logical_forms_for_literal
 from utils import search_over_graphs
+import pickle
 
 logger = logging.getLogger(__name__)
 
@@ -252,7 +253,10 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         # if self._training:
         if self._use_constrained_vocab and len(entity_map) > 0:
             if not self._training:
+                print('Fetching contrained vocab for not training $&#^#*@*#&$^(#$&*((##')
                 constrained_vocab = self._get_constrained_vocab(entity_map, literals)
+                with open('input_constrained_vocab.pkl', 'wb') as file:
+                    pickle.dump(constrained_vocab, file)
             else:
                 logical_form = item['s_expression'] if not self._use_sparql else item['sparql_query']
                 domains = item['domains'] if not self._gq1 else None
@@ -289,8 +293,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             #raise AssertionError
 
             constrained_vocab = list(vocab)
-        print('SAVE VALUE: Raw vocabulary')
-        print(constrained_vocab)
+        #print('SAVE VALUE: Raw vocabulary')
+        #print(constrained_vocab)
         # schema_constants = constrained_vocab[:]
         # always fix the position of END_SYMBOL, START_SYMBOL in each constrained vocab,
         # because a consistent global shared end_index / start_index is needed by BeamSearch
@@ -300,6 +304,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             constrained_vocab.insert(v, k)
 
         schema_constants = constrained_vocab[:]
+
+
 
         # dividing the schema constants into num_constants_per_group every group
         concat_strings = ['' for _ in range(len(schema_constants) // self._num_constants_per_group + 1)]
@@ -322,8 +328,8 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         tokenized_sources = [self._source_tokenizer.tokenize(item['question'] + '[SEP]' + concat_string)
                              for concat_string in concat_strings]
 
-        print('SAVE VALUE: Tokenized vocab')
-        print(tokenized_sources)
+        #print('SAVE VALUE: Tokenized vocab')
+        #print(tokenized_sources)
 
         end = []
         start = []
@@ -469,7 +475,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                 step = 2
             for e in entity_map:
                 vocab.update(self._get_vocab_info(e, step))
-                vocab.add(e)
+                vocab.add('Q5628513')#e)
             for l in literals:
                 vocab.add(l)
 

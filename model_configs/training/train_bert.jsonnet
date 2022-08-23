@@ -2,8 +2,8 @@ local ranking = false;
 local num_constants_per_group = 45;
 local offline = true;
 local gq1 = false;
-local cuda = -1;
-local use_sparql = true;
+local cuda = 0;
+local use_sparql = false;
 {
   "dataset_reader":{
     "type":"bert_seq2seq",
@@ -53,8 +53,8 @@ local use_sparql = true;
     "target_token_indexers":{"tokens": {"namespace": "target_tokens"}},
     "num_constants_per_group": num_constants_per_group
   },
-  "train_data_path": "data/grailqa_v1.0_train.json",
-  "validation_data_path": "data/grailqa_v1.0_dev.json",
+  "train_data_path": "data/finetune_smoketest_questions.json",
+  "validation_data_path": "data/finetune_smoketest_questions.json",
   "model": {
     "type": "bert_cons_simple_seq2seq",
     "use_sparql": use_sparql,

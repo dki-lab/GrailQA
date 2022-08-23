@@ -239,9 +239,9 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         #print('SAVE VALLUE: Entity map')
         #print(entity_map)
 
-        qid = item['qid']
+        qid = str(item['qid'])
 
-        with open('cache/extended_smoketest_singleparent_vocab.json', 'r') as file:
+        with open('cache/finetune_smoketest_singleparent_vocab.json', 'r') as file:
             vocab_dict = json.load(file)
 
         constrained_vocab = vocab_dict[qid]

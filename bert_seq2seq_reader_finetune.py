@@ -238,17 +238,21 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         #print(item)
         #print('SAVE VALLUE: Entity map')
         #print(entity_map)
-
-        qids = item['qid']
+        print(item)
+        qid = item['wikidata_qids']
+        print(qid)
 
         constrained_vocab = []
-        for qid in qids:
 
-            with open(f'cache/finetune/filtered/finetuen_biosparql_{qid}.json', 'r') as file:
+        try:
+            with open(f'cache/finetune/fulldata/finetune_biosparql_cleaned_{qid}.json', 'r') as file:
                 vocab_dict = json.load(file)
                 constrained_vocab.extend(vocab_dict[qid])
+        except FileNotFoundError:
+            return None
         
-        target_string = None
+        print(len(constrained_vocab))
+        target_string = item['s_expression']
         qid = MetadataField(qid)
         #if item['qid'] in [2102902009000]:   # will exceed maximum length constraint
         #    return None
@@ -330,7 +334,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                     constant = 'and'
                 concat_strings[i] += ' '.join(re.split('\.|_', constant.lower())) + self._delimiter
        # print('concat strings')
-       # print(len(concat_strings))
+        print('concat strings length: ', sum([len(string) for string in concat_strings]))
        # print(concat_strings)
         # handle sequence of length > 512 (dividing the schema constants into num_constants_per_group every group)
         # _source_tokenizer.tokenize will append the head [CLS] and ending [SEP] by itself
@@ -339,7 +343,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
 
         #print('SAVE VALUE: Tokenized vocab')
         #print(tokenized_sources)
-
+        #print('delimiter', self._delimiter)
         end = []
         start = []
         for tokenized_source in tokenized_sources:
@@ -350,6 +354,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                     start.append(i + 1)
                 if str(token) == '[SEP]':
                     if not flag:
+                        #print('appending to start only')
                         start.append(i + 1)
                     flag = True
 
@@ -382,6 +387,10 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         # if len(constrained_vocab) != 14 + len(start):
         if len(constrained_vocab) != len(start):
             print(entity_map)
+            print(len(constrained_vocab))
+            print(len(start))
+            print(len(end))
+            print(start)
         # assert len(constrained_vocab) == 14 + len(start)
         assert len(constrained_vocab) == len(start)
 

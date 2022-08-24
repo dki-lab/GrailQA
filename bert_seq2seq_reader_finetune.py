@@ -238,7 +238,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         #print(item)
         #print('SAVE VALLUE: Entity map')
         #print(entity_map)
-        print(item)
+        #print(item)
         qid = item['wikidata_qids']
         print(qid)
 
@@ -251,7 +251,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         except FileNotFoundError:
             return None
         
-        print(len(constrained_vocab))
+       # print(len(constrained_vocab))
         target_string = item['s_expression']
         qid = MetadataField(qid)
         #if item['qid'] in [2102902009000]:   # will exceed maximum length constraint
@@ -334,7 +334,7 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
                     constant = 'and'
                 concat_strings[i] += ' '.join(re.split('\.|_', constant.lower())) + self._delimiter
        # print('concat strings')
-        print('concat strings length: ', sum([len(string) for string in concat_strings]))
+       # print('concat strings length: ', sum([len(string) for string in concat_strings]))
        # print(concat_strings)
         # handle sequence of length > 512 (dividing the schema constants into num_constants_per_group every group)
         # _source_tokenizer.tokenize will append the head [CLS] and ending [SEP] by itself
@@ -415,7 +415,10 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             for lf in logical_forms:
                 try:
                     lf_field = self._convert_target_to_indices(lf, constrained_vocab, vocab_field)
-                    lfs.append(lf_field)
+                    if lf_field is None:
+                        return None
+                    else:
+                        lfs.append(lf_field)
                 except Exception:
                     pass
             if len(lfs) == 0:
@@ -439,10 +442,11 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
             try:
                 converted_target.append(constrained_vocab.index(x))
             except Exception:
-                assert not self._training
+                #assert not self._training
                 # This would never happen during training. It only happens when a target token falls out of the vocab.
                 # It may have some minor effect on loss during validation, no big deal
-                converted_target.append(0)
+                #converted_target.append(0)
+                return None
 
         converted_target.append(constrained_vocab.index(END_SYMBOL))
         converted_target.insert(0, constrained_vocab.index(START_SYMBOL))

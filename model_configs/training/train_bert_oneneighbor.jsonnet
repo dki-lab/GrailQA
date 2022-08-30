@@ -1,11 +1,16 @@
 local ranking = false;
 local num_constants_per_group = 4;
 local offline = true;
+local gq1 = false;
+local cuda = 0;
+local use_sparql = false;
 {
   "dataset_reader":{
     "type":"bert_seq2seq",
+    "gq1": gq1,
     "offline": offline,
     "constrained_vocab":"mix2",
+    "use_sparql": use_sparql,
     "training": true,
     "source_tokenizer": {
       "type": "pretrained_transformer",
@@ -25,12 +30,12 @@ local offline = true;
   },
   "validation_dataset_reader":{
     "type":"bert_seq2seq",
-    "lazy": true,
+    "gq1": gq1,
     "offline": offline,
     "constrained_vocab":"2_step",
-    "perfect_entity_linking": false,
+    "use_sparql": use_sparql,
+    "perfect_entity_linking": true,
     "ranking_mode": ranking,
-    "use_constrained_vocab": true,
     "training": false,
     "source_tokenizer": {
       "type": "pretrained_transformer",
@@ -48,12 +53,11 @@ local offline = true;
     "target_token_indexers":{"tokens": {"namespace": "target_tokens"}},
     "num_constants_per_group": num_constants_per_group
   },
-  "train_data_path": "data/grailqa_v1.0_train.json",
-  "validation_data_path": "data/grailqa_v1.0_dev.json",
+  "train_data_path": "data/finetune/one_neighbor/finetune_oneneighbor_questions_qidsplit_train.json",
+  "validation_data_path": "data/finetune/one_neighbor/finetune_oneneighbor_questions_qidsplit_val.json",
   "model": {
-    "eval": true,
-    "experiment_sha": "",
     "type": "bert_cons_simple_seq2seq",
+    "use_sparql": use_sparql,
     "source_embedder": {
       "allow_unmatched_keys": true,
         "bert": {
@@ -69,7 +73,7 @@ local offline = true;
       "num_layers": 1
     },
     "target_embedding_dim": 768,
-    "max_decoding_steps": 100,
+    "max_decoding_steps": 200,
     "target_namespace": "target_tokens",
     "ranking_mode": ranking,
     "attention_function": {"type": "dot_product"},
@@ -85,10 +89,10 @@ local offline = true;
     "track_epoch" : true
   },
   "trainer": {
-    "num_epochs": 20,
+    "num_epochs": 10,
     "validation_metric": "+exact_match",
     "patience": 3,
-    "cuda_device": 1,
+    "cuda_device": cuda,
     "num_gradient_accumulation_steps": 16,
     "optimizer": {
       "type": "adam",

@@ -219,8 +219,9 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
 
                     # print(len(logical_forms))
                     #instance = self.text_to_instance(item, entity_map, literals, logical_forms)
+                #print('attempting to yield')
                 if instance:
-                    print('yielding instance')
+                    #print('yielding instance')
                     yield instance
 
     @overrides
@@ -239,21 +240,28 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
         #print('SAVE VALLUE: Entity map')
         #print(entity_map)
         #print(item)
-        qid = item['wikidata_qids']
-        print(qid)
+        wikiqid = item['wikidata_qids']
+       
+        #print(qid)
 
         constrained_vocab = []
+        question_num = item['qid']
+       #print(f'reading question {question_num}')
 
         try:
-            with open(f'cache/finetune/fulldata/finetune_biosparql_cleaned_{qid}.json', 'r') as file:
+            with open(f'cache/finetune/one_neighbor/finetune_biosparql_oneneighbor_cleaned_{wikiqid}.json', 'r') as file:
+            #with open(f'cache/finetune/predicates/finetune_biosparql_predicates_cleaned_{wikiqid}.json', 'r') as file:
                 vocab_dict = json.load(file)
-                constrained_vocab.extend(vocab_dict[qid])
+                constrained_vocab.extend(vocab_dict[wikiqid])
         except FileNotFoundError:
+            #raise AssertionError
             return None
+
+        print('question: ', question_num)
         
        # print(len(constrained_vocab))
         target_string = item['s_expression']
-        qid = MetadataField(qid)
+        qid = MetadataField(question_num)
         #if item['qid'] in [2102902009000]:   # will exceed maximum length constraint
         #    return None
 
@@ -430,7 +438,10 @@ class Bert_Seq2SeqDatasetReader(DatasetReader):
 
         if target_string is not None:
             target_field = self._convert_target_to_indices(target_string, constrained_vocab, vocab_field)
-            instance_dict["target_tokens"] = target_field  # The id of each target token in constrained_vocab
+            if target_field is None:
+                return None
+            else:
+                instance_dict["target_tokens"] = target_field  # The id of each target token in constrained_vocab
         
         #print(instance_dict.keys())
 

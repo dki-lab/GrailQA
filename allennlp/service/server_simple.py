@@ -106,6 +106,8 @@ def make_app(predictor: Predictor,
 
         data = request.get_json()
 
+        print(data)
+
         prediction = predictor.predict_json(data)
         if sanitizer is not None:
             prediction = sanitizer(prediction)
@@ -145,7 +147,7 @@ def _get_predictor(args: argparse.Namespace) -> Predictor:
                            cuda_device=args.cuda_device,
                            overrides=args.overrides)
 
-    return Predictor.from_archive(archive, args.predictor)
+    return Predictor.from_archive(archive, args.predictor, dataset_reader_to_load = args.dataset_reader_choice)
 
 def main(args):
     # Executing this file with no extra options runs the simple service with the bidaf test fixture
@@ -172,6 +174,13 @@ def main(args):
                         action='append',
                         default=[],
                         help='additional packages to include')
+                
+    parser.add_argument('--dataset-reader-choice',
+                        type=str,
+                        choices=['train', 'validation'],
+                        default='validation',
+                        help='Indicates which model dataset reader to use if the --use-dataset-reader '
+                            'flag is set.')
 
     args = parser.parse_args(args)
 
@@ -180,6 +189,7 @@ def main(args):
         import_submodules(package_name)
 
     predictor = _get_predictor(args)
+
 
     field_names = args.field_name
 

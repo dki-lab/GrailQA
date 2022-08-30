@@ -72,10 +72,10 @@ class Instance(Mapping[str, Field]):
                 print('vocab type: ', type(vocab))
                 print('field type: ', type(field))
                 #print('field')
-                #try:
-                #    print(field.metadata)
-                #except:
-                #    pass
+                try:
+                    print(field.metadata)
+                except:
+                    pass
                 #print('###########################')
                 #print(vocab.self.values())
                 #try:

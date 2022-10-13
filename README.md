@@ -134,6 +134,7 @@ We also show the running time of inference in online mode, in which offline cach
 The running time is quite significant when either ranking mode or vocabulary pruning is activated. This is because running SPARQL queries to query the 2-hop information (i.e., either candidate logical forms for ranking or 2-hop schema items for vocabulary pruning) is very time-consuming. This is also a general issue for the enumeration+ranking framework in KBQA, which is used by many existing methods. This issue has to some extent been underaddressed so far. A common practice is to use offline cache to store the exectuions of all related SPARQL queries, which assumes the test questions are known in advance. This assumption is true for existing KBQA benchmarks but is not realistic for a real production system. How to improve the efficiency of KBQA models while maintaining their efficacy is still an active area for research.
 
 ## Citation
+Please please consider citing the following BibTeX entry if you find our work helpful to your research.
 ```
 @inproceedings{gu2021beyond,
   title={Beyond IID: three levels of generalization for question answering on knowledge bases},
@@ -143,3 +144,12 @@ The running time is quite significant when either ranking mode or vocabulary pru
   organization={ACM}
 }
 ```
+
+## Acknowledgement
+Many thanks to the feedbacks & helpful discussions from people in OSU NLP Group.
+
+### &#8627; Stargazers
+[![Stargazers repo roster for @nastyox/Repo-Roster](https://reporoster.com/stars/dki-lab/GrailQA)](https://github.com/dki-lab/GrailQA/stargazers)
+
+### &#8627; Forkers
+[![Forkers repo roster for @nastyox/Repo-Roster](https://reporoster.com/forks/dki-lab/GrailQA)](https://github.com/dki-lab/GrailQA/network/members)

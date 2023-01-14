@@ -17,15 +17,15 @@ This repository is structured as follows:
 ```
 GrailQA/
 ├─ model_configs/
-    ├─ train/: Configuration files for training
-    ├─ test/: Configuration files for inference
+|    ├─ train/: Configuration files for training
+|    └── test/: Configuration files for inference
 ├─ data/: Data files for training, validation, and test
 ├─ ontology/: Processed Freebase ontology files
-    ├─ domain_dict: Mapping from a domain in Freebase Commons to all schema items in it
-    ├─ domain_info: Mapping from a schema item to a Freebase Commons domain it belongs to
-    ├─ fb_roles: Domain and range information for a relation (Note that here domain means a different thing from domains in Freebase Commons)
-    ├─ fb_types: Class hierarchy in Freebase
-    ├─ reverse_properties: Reverse properties in Freebase 
+|    ├─ domain_dict: Mapping from a domain in Freebase Commons to all schema items in it
+|    ├─ domain_info: Mapping from a schema item to a Freebase Commons domain it belongs to
+|    ├─ fb_roles: Domain and range information for a relation (Note that here domain means a different thing from domains in Freebase Commons)
+|    ├─ fb_types: Class hierarchy in Freebase
+|    └── reverse_properties: Reverse properties in Freebase 
 ├─ bert_configs/: BERT configuration used by pytorch_transformer, which you are very unlikely to modify
 ├─ entity_linking_results/: Entity linking results 
 ├─ entity_linker/: source code for the entity linker, which is a separate module from our main model
@@ -33,15 +33,15 @@ GrailQA/
 ├─ cache/: Cached results for SPARQL queries, which are used to accelerate the experiments by caching many SPARQL query results offline
 ├─ saved_models/: Trained models
 ├─ utils/:
-    ├─ bert_interface.py: Interface to BERT 
-    ├─ logic_form_util: Tools related to logical forms, including the exact match checker for two logical forms
-    ├─ search_over_graphs.py: Generate candidate logical forms for our Ranking models
-    ├─ sparql_executor: Sparql-related tools
+|    ├─ bert_interface.py: Interface to BERT 
+|    ├─ logic_form_util: Tools related to logical forms, including the exact match checker for two logical forms
+|    ├─ search_over_graphs.py: Generate candidate logical forms for our Ranking models
+|    └── sparql_executor: Sparql-related tools
 ├─ bert_constrained_seq2seq.py: BERT-based model for both Ranking and Transduction
 ├─ bert_seq2seq_reader.py: Data reader for BERT-based models
 ├─ constrained_seq2seq.py: GloVe-based model for both Ranking and Transduction
 ├─ constrained_seq2seq_reader.py: Data reader for GloVe-based models
-├─ run.py: Main function
+└── run.py: Main function
 ```
 
 ## Setup
